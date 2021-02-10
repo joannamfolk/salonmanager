@@ -24,7 +24,7 @@ $f3 -> route('GET /', function() {
 $f3->route('GET /appointment', function() {
 
     $view = new Template();
-    echo $view->render('views/admin.php');
+    echo $view->render('views/appointment.html');
 });
 
 // SERVICES ROUTE
