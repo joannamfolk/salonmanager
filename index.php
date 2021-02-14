@@ -59,7 +59,7 @@ $f3->route('GET /contact', function() {
 $f3->route('GET /login', function() {
 
     $view = new Template();
-    echo $view->render('views/login.php');
+    echo $view->render('views/login.html');
 });
 
 // ADMIN ROUTE
