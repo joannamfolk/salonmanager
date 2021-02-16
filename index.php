@@ -56,8 +56,10 @@ $f3->route('GET /contact', function() {
 });
 
 // LOGIN ROUTE
-$f3->route('GET /login', function() {
-
+$f3->route('GET /login', function($f3) {
+    // Route Hive
+    $f3->set('adminUsername', getAdminUsername());
+    $f3->set('adminPassword', getAdminPassword());
     $view = new Template();
     echo $view->render('views/login.html');
 });
