@@ -8,6 +8,10 @@ ini_set('display_errors', TRUE);
 
 // Require the autoload file
 require_once('vendor/autoload.php');
+require_once('model/data-layer.php');
+
+// start session
+session_start();
 
 // Create an instance of the Base class
 $f3 = Base::instance();
@@ -56,19 +60,34 @@ $f3->route('GET /contact', function() {
 });
 
 // LOGIN ROUTE
-$f3->route('GET /login', function($f3) {
+$f3->route('GET|POST /login', function($f3) {
     // Route Hive
-    $f3->set('adminUsername', getAdminUsername());
-    $f3->set('adminPassword', getAdminPassword());
+    $adminLogin = getAdminUsername();
+    $userLogin = $_POST['username'];
+
+    $adminPassword = getAdminPassword();
+    $userPassword = $_POST['password'];
+
+    if (isset($_POST['login']) && !empty($_POST['username'])
+        && !empty($_POST['password'])) {
+        if($userLogin == $adminLogin && $userPassword == $adminPassword){
+            $_SESSION['valid'] = true;
+            $_SESSION['username'] = $adminLogin;
+            $f3->reroute('views/admin.html');
+        } else{
+            echo "INVALID";
+        }
+    }
+
     $view = new Template();
     echo $view->render('views/login.html');
 });
 
 // ADMIN ROUTE
-$f3->route('GET /admin', function() {
+$f3->route('GET|POST /admin', function() {
 
     $view = new Template();
-    echo $view->render('views/admin.php');
+    echo $view->render('views/admin.html');
 });
 
 //  Run fat free - has to be the last thing in the file
