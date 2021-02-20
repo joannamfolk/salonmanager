@@ -90,5 +90,12 @@ $f3->route('GET|POST /admin', function() {
     echo $view->render('views/admin.html');
 });
 
+// ADMIN - ADD PRODUCT
+$f3->route('GET|POST /admin-add-product', function() {
+
+    $view = new Template();
+    echo $view->render('views/admin-add-product.html');
+});
+
 //  Run fat free - has to be the last thing in the file
 $f3->run();
