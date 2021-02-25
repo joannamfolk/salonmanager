@@ -117,3 +117,74 @@
     background-color: #2E2D2D;
 }
 
+/*
+Stylist page styling
+ */
+
+.stylist-card {
+    max-width: 300px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+    margin: 10px auto;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.stylist-card img {
+    transition: all linear 0.25s;
+}
+
+.stylist-card .profile-name {
+    position: relative;
+    left: 30px;
+    bottom: 70px;
+    font-size: 30px;
+    color: #FFF;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    transition: all linear 0.25s;
+}
+
+.stylist-card .bio {
+    position: relative;
+    /*right: auto;*/
+    color: black;
+    font-size: 20px;
+    transition: all linear 0.25s;
+}
+
+.stylist-card .skills {
+    position: relative;
+    /*left: auto;*/
+    color: black;
+    font-size: 20px;
+    transition: all linear 0.25s;
+}
+
+.stylist-card .nickname {
+    font-size: 20px;
+    margin: auto;
+}
+
+.stylist-card:hover img {
+    /*filter: blur(6px);*/
+    filter: basicImage();
+}
+
+.stylist-card:hover .profile-name {
+    bottom: 80px;
+}
+
+.stylist-card:hover .profile-username {
+    bottom: 60px;
+}
+
+.stylist-card:hover .profile-icons {
+    right: 40px;
+}
+
+
+

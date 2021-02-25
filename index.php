@@ -39,8 +39,9 @@ $f3->route('GET /services', function() {
 });
 
 // STYLIST ROUTE
-$f3->route('GET /stylist', function() {
+$f3->route('GET|POST /stylist', function($f3) {
 
+    $f3->set('stylists', getStylist());
     $view = new Template();
     echo $view->render('views/stylist.html');
 });

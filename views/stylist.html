@@ -38,7 +38,30 @@
 <!-- Navigation End -->
 
 <div class="container">
-    <h1>Stylists</h1>
+    <div class="row justify-content-center my-5">
+
+        <h1 class="text-center"><strong>Stylists</strong></h1>
+
+    </div>
+
+
+    <div class="row justify-content-center">
+
+
+        <repeat group="{{ @stylists }}" key="{{@name}}" value="{{ @stylist }}">
+            <div class="col-md-4 mx-auto my-auto">
+
+                <div class="stylist-card"><a href="#"><img src="{{@stylist[3]}}" alt="A jar with cream" class="img img-responsive"></a>
+                    <div class="profile-name">{{@name}}</div>
+                    <div class="bio" id="bio"><strong>About:</strong>{{@stylist[0]}}</div><br>
+                    <div class="skills" id="skill"><strong>Skills: </strong>{{@stylist[1]}}</div><br>
+                    <div class="nickname" id="nickname"><strong>Nickname: </strong>{{@stylist[2]}}</div>
+                </div>
+            </div>
+
+        </repeat>
+
+    </div>
 </div>
 
 <include href="includes/footer.html"></include>
