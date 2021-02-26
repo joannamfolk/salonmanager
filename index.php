@@ -6,12 +6,13 @@
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 
+// start session
+session_start();
+
 // Require the autoload file
 require_once('vendor/autoload.php');
 require_once('model/data-layer.php');
-
-// start session
-session_start();
+require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
 
 // Create an instance of the Base class
 $f3 = Base::instance();
