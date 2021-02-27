@@ -33,6 +33,77 @@
 </nav>
 <!-- End Navigation -->
 
+<div class="container border border-dark rounded shadow-lg mt-5">
+    <h5>Logged In As: </h5>
+    <div class="row">
+        <div class="col-4 border">
+            <form action="#" method="post">
+                <h4>Add Product</h4>
+                <label for="product-name" class="font-weight-bolder">Product Name: <br>
+                    <input type="text" size="75" class="form-control shadow-sm rounded" id="product-name" name="product-name" value=""> <br>
+                    <div class="text-danger">
+                        <check if="{{isset(@errors['productname'])}}">
+                            {{@errors['productname']}}
+                        </check>
+                    </div>
+                </label> <br>
+
+                <label for="product-description" class="font-weight-bolder">Product Description:</label> <br>
+                <textarea name="product-description" id="product-description" class="shadow-sm rounded" wrap="hard" cols="50" rows="6"></textarea>
+                    <div class="text-danger">
+                        <check if="{{isset(@errors['productdescription'])}}">
+                            {{@errors['productdescription']}}
+                        </check>
+                    </div>
+                </label> <br>
+
+                <label for="product-size" class="font-weight-bolder">Product Size: <br>
+                    <input type="text" size="75" class="form-control shadow-sm rounded" id="product-size" name="product-size" value=""> <br>
+                    <div class="text-danger">
+                        <check if="{{isset(@errors['productsize'])}}">
+                            {{@errors['productsize']}}
+                        </check>
+                    </div>
+                </label> <br>
+
+                <label for="product-price" class="font-weight-bolder">Product Price: <br>
+                    <input type="text" size="75" class="form-control shadow-sm rounded" id="product-price" name="product-price" value=""> <br>
+                    <div class="text-danger">
+                        <check if="{{isset(@errors['productprice'])}}">
+                            {{@errors['productprice']}}
+                        </check>
+                    </div>
+                </label> <br>
+
+                <label class="font-weight-bolder">Product Category <br>
+                    <select name="product-category" id="product-category">
+                        <option value="" selected="selected">Select a Category</option>
+                        <option value="">Shampoo</option>
+                        <option value="">Conditioner</option>
+                        <option value="">Deep-Conditioner</option>
+                        <option value="">Styling Gel</option>
+                        <option value="">Holding Spray</option>
+                        <option value="">Styling Pomade</option>
+                        <option value="">Serums/Oils</option>
+                    </select>
+                </label> <br>
+
+                <div class="text-center align-middle">
+                    <input class="btn btn-primary mt-5 text-center rounded" type="submit" value="Add to Inventory">
+                </div>
+            </form>
+            <div class="text-center align-middle">
+                <button type="button" class="btn btn-primary m-3 rounded">Update Product</button>
+                <br>
+                <button type="button" class="btn btn-primary m-3 rounded">Delete Product</button>
+            </div>
+        </div>
+        <div class="col-8 border">
+
+        </div>
+    </div>
+</div>
+
 </body>
 
 </html>
