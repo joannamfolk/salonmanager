@@ -12,6 +12,7 @@ session_start();
 // Require the autoload file
 require_once('vendor/autoload.php');
 require_once('model/data-layer.php');
+require_once('model/validate.php');
 require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
 
 // Create an instance of the Base class
@@ -93,13 +94,46 @@ $f3->route('GET|POST /admin', function() {
 });
 
 // ADMIN - ADD PRODUCT
-$f3->route('GET|POST /admin-add-product', function() {
+$f3->route('GET|POST /admin-add-product', function($f3) {
     // get data from post array and trim the values
     $productName = trim($_POST['product-name']);
     $productDescription = trim($_POST['product-description']);
     $productSize = trim($_POST['product-size']);
     $productPrice = trim($_POST['product-price']);
     $productCategory = trim($_POST['product-category']);
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        // Validate and set error messages
+        if(validProduct($productName)){
+            $_SESSION['product-name'] = $productName;
+        } else {
+            $f3-> set('errors["productname"]', "Product Name Required - Alphabetic Characters Only");
+        } // PRODUCT NAME
+
+        if(validDescription($productDescription)){
+            $_SESSION['product-description'] = $productDescription;
+        } else {
+            $f3-> set('errors["productdescription"]', "Please fill out description for product");
+        } // PRODUCT DESCRIPTION
+
+        if(isset($_POST['product-size'])){
+            $_SESSION['product-size'] = $productSize;
+        } else {
+            $f3-> set('errors["productsize"]', "Size Measurement Required");
+        } // PRODUCT SIZE
+
+        if(validPrice($productPrice)){
+            $_SESSION['product-price'] = $productPrice;
+        } else {
+            $f3-> set('errors["productprice"]', "Enter price");
+        } // PRODUCT PRICE
+
+        if(isset($_POST['product-category'])){
+            $_SESSION['product-category'] = $productCategory;
+        } else {
+            $f3-> set('errors["productcategory"]', "Select a category");
+        } // PRODUCT CATEGORY
+    }
 
     $view = new Template();
     echo $view->render('views/admin-add-product.html');

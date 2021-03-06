@@ -86,6 +86,11 @@
                         <option value="">Styling Pomade</option>
                         <option value="">Serums/Oils</option>
                     </select>
+                    <div class="text-danger">
+                        <check if="{{isset(@errors['productcategory'])}}">
+                            {{@errors['productcategory']}}
+                        </check>
+                    </div>
                 </label> <br>
 
                 <div class="text-center align-middle">
