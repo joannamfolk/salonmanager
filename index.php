@@ -94,6 +94,12 @@ $f3->route('GET|POST /admin', function() {
 
 // ADMIN - ADD PRODUCT
 $f3->route('GET|POST /admin-add-product', function() {
+    // get data from post array and trim the values
+    $productName = trim($_POST['product-name']);
+    $productDescription = trim($_POST['product-description']);
+    $productSize = trim($_POST['product-size']);
+    $productPrice = trim($_POST['product-price']);
+    $productCategory = trim($_POST['product-category']);
 
     $view = new Template();
     echo $view->render('views/admin-add-product.html');
