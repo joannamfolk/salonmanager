@@ -95,6 +95,7 @@ $f3->route('GET|POST /admin', function() {
 
 // ADMIN - ADD PRODUCT
 $f3->route('GET|POST /admin-add-product', function($f3) {
+    var_dump($_SESSION['product']);
     // get data from post array and trim the values
     $productName = trim($_POST['product-name']);
     $productDescription = trim($_POST['product-description']);
@@ -105,38 +106,44 @@ $f3->route('GET|POST /admin-add-product', function($f3) {
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Validate and set error messages
         if(validProduct($productName)){
-            $_SESSION['product-name'] = $productName;
+            $_SESSION['product'] = $productName;
         } else {
             $f3-> set('errors["productname"]', "Product Name Required - Alphabetic Characters Only");
         } // PRODUCT NAME
 
         if(validDescription($productDescription)){
-            $_SESSION['product-description'] = $productDescription;
+            $_SESSION['product'] = $productDescription;
         } else {
             $f3-> set('errors["productdescription"]', "Please fill out description for product");
         } // PRODUCT DESCRIPTION
 
         if(isset($_POST['product-size'])){
-            $_SESSION['product-size'] = $productSize;
+            $_SESSION['product'] = $productSize;
         } else {
             $f3-> set('errors["productsize"]', "Size Measurement Required");
         } // PRODUCT SIZE
 
         if(validPrice($productPrice)){
-            $_SESSION['product-price'] = $productPrice;
+            $_SESSION['product'] = $productPrice;
         } else {
             $f3-> set('errors["productprice"]', "Enter price");
         } // PRODUCT PRICE
 
         if(isset($_POST['product-category'])){
-            $_SESSION['product-category'] = $productCategory;
+            $_SESSION['product'] = $productCategory;
         } else {
             $f3-> set('errors["productcategory"]', "Select a category");
         } // PRODUCT CATEGORY
+
+        // if no errors - save product to database
+        if(empty($f3->get('errors'))){
+            saveProduct($_SESSION['product']);
+            session_destroy();
+        }
     }
 
     $view = new Template();
-    echo $view->render('views/admin-add-product.html');
+    echo $view->render('views/admin-add-product.php');
 });
 
 //  Run fat free - has to be the last thing in the file
