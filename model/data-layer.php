@@ -2,7 +2,7 @@
 /* model/data-layer.php
  * returns data for salon management application
  * */
-
+//require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
 /**
  * Function that returns username for admin login
  */
@@ -43,6 +43,7 @@ function getStylist()
  *
  */
 function saveProduct($product){
+    require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
     var_dump($product);
 
     // Define query
@@ -59,15 +60,36 @@ function saveProduct($product){
     $productPrice = trim($_POST['product-price']);
     $productCategory = trim($_POST['product-category']);
 
-    $statement->bindParam(':product_name', $productName, PDO::PARAM_STR);
-    $statement->bindParam(':product_description', $productDescription, PDO::PARAM_STR);
-    $statement->bindParam(':product_size', $productSize, PDO::PARAM_STR);
-    $statement->bindParam(':product_price', $productPrice, PDO::PARAM_STR);
-    $statement->bindParam(':product_category', $productCategory, PDO::PARAM_STR);
+    $statement->bindParam(':product_name', $product->$productName, PDO::PARAM_STR);
+    $statement->bindParam(':product_description', $product->$productDescription, PDO::PARAM_STR);
+    $statement->bindParam(':product_size', $product->$productSize, PDO::PARAM_STR);
+    $statement->bindParam(':product_price', $product->$productPrice, PDO::PARAM_STR);
+    $statement->bindParam(':product_category', $product->$productCategory, PDO::PARAM_STR);
 
     // execute statement
     $statement->execute();
 
     $id = $dbh->lastInsertId();
     echo "<p>Product Added ID $id</p>";
+}
+
+/**
+ * This function will query the database and select all products from the database.
+ */
+function getProducts(){
+    require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+    // define
+    $sql = "SELECT * FROM SM_products";
+
+    // prepare
+    $statement = $dbh->prepare($sql);
+
+    // execute
+    $statement->execute();
+
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($result as $row) {
+        echo "<p>" . $row['product_name'] . ", " . $row['product_description'] . ", " . $row['product_size'] . ", "
+            . $row['product_price'] . ", " . $row['product_category'] . "</p>";
+    }
 }

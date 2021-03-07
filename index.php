@@ -95,6 +95,8 @@ $f3->route('GET|POST /admin', function() {
 
 // ADMIN - ADD PRODUCT
 $f3->route('GET|POST /admin-add-product', function($f3) {
+    session_destroy();
+    getProducts();
     var_dump($_SESSION['product']);
     // get data from post array and trim the values
     $productName = trim($_POST['product-name']);
@@ -104,6 +106,7 @@ $f3->route('GET|POST /admin-add-product', function($f3) {
     $productCategory = trim($_POST['product-category']);
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $product = $_SESSION['product'];
         // Validate and set error messages
         if(validProduct($productName)){
             $_SESSION['product'] = $productName;
@@ -117,7 +120,7 @@ $f3->route('GET|POST /admin-add-product', function($f3) {
             $f3-> set('errors["productdescription"]', "Please fill out description for product");
         } // PRODUCT DESCRIPTION
 
-        if(isset($_POST['product-size'])){
+        if(isset($productSize)){
             $_SESSION['product'] = $productSize;
         } else {
             $f3-> set('errors["productsize"]', "Size Measurement Required");
@@ -129,16 +132,17 @@ $f3->route('GET|POST /admin-add-product', function($f3) {
             $f3-> set('errors["productprice"]', "Enter price");
         } // PRODUCT PRICE
 
-        if(isset($_POST['product-category'])){
+        if(isset($productCategory)){
             $_SESSION['product'] = $productCategory;
         } else {
             $f3-> set('errors["productcategory"]', "Select a category");
         } // PRODUCT CATEGORY
-
+        var_dump($_SESSION['product']);
         // if no errors - save product to database
         if(empty($f3->get('errors'))){
             saveProduct($_SESSION['product']);
-            session_destroy();
+            var_dump($_SESSION['product']);
+
         }
     }
 

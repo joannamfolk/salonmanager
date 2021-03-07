@@ -30,5 +30,5 @@ function validDescription($description){
  * @return boolean is the product valid.
  */
 function validPrice($price){
-    return !empty($price) && is_float($price);
+    return !empty($price);
 }
