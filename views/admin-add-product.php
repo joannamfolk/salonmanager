@@ -52,7 +52,7 @@
                 </label> <br>
 
                 <label for="product-size" class="font-weight-bolder">Product Size: <br>
-                    <input type="text" size="75" class="form-control shadow-sm rounded" id="product-size" name="product-size" value=""> <br>
+                    <input type="text" size="75" class="form-control shadow-sm rounded" id="product-size" name="product-size" value="">
                     <div class="text-danger">
                         <check if="{{isset(@errors['productsize'])}}">
                             {{@errors['productsize']}}
@@ -71,15 +71,15 @@
 
                 <label class="font-weight-bolder">Product Category <br>
                     <select name="product-category" id="product-category">
-                        <option value="" selected="selected">Select a Category</option>
-                        <option value="">Shampoo</option>
-                        <option value="">Conditioner</option>
-                        <option value="">Deep-Conditioner</option>
-                        <option value="">Styling Gel</option>
-                        <option value="">Holding Spray</option>
-                        <option value="">Styling Pomade</option>
-                        <option value="">Serums/Oils</option>
-                        <option value="">Skin Cremes</option>
+                        <option value="null" selected="selected">Select a Category</option>
+                        <option value="shampoo">Shampoo</option>
+                        <option value="conditioner">Conditioner</option>
+                        <option value="deep conditioner">Deep-Conditioner</option>
+                        <option value="styling gel">Styling Gel</option>
+                        <option value="holding spray">Holding Spray</option>
+                        <option value="styling pomade">Styling Pomade</option>
+                        <option value="serums oils">Serums/Oils</option>
+                        <option value="skin cremes">Skin Cremes</option>
                     </select>
                     <div class="text-danger">
                         <check if="{{isset(@errors['productcategory'])}}">

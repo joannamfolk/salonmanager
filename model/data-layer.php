@@ -66,6 +66,8 @@ function saveProduct($product){
     $statement->bindParam(':product_price', $product->$productPrice, PDO::PARAM_STR);
     $statement->bindParam(':product_category', $product->$productCategory, PDO::PARAM_STR);
 
+    echo "$product";
+
     // execute statement
     $statement->execute();
 

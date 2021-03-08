@@ -98,7 +98,7 @@ $f3->route('GET|POST /admin', function() {
 $f3->route('GET|POST /admin-add-product', function($f3) {
 
     getProducts();
-    var_dump($_SESSION['product']);
+    var_dump($_SESSION);
     // get data from post array and trim the values
     $productName = trim($_POST['product-name']);
     $productDescription = trim($_POST['product-description']);
@@ -107,42 +107,41 @@ $f3->route('GET|POST /admin-add-product', function($f3) {
     $productCategory = trim($_POST['product-category']);
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $product = $_SESSION['product'];
         // Validate and set error messages
         if(validProduct($productName)){
-            $_SESSION['product'] = $productName;
+            $_SESSION['product_name'] = $productName;
         } else {
             $f3-> set('errors["productname"]', "Product Name Required - Alphabetic Characters Only");
         } // PRODUCT NAME
 
         if(validDescription($productDescription)){
-            $_SESSION['product'] = $productDescription;
+            $_SESSION['product_description'] = $productDescription;
         } else {
             $f3-> set('errors["productdescription"]', "Please fill out description for product");
         } // PRODUCT DESCRIPTION
 
         if(isset($productSize)){
-            $_SESSION['product'] = $productSize;
+            $_SESSION['product_size'] = $productSize;
         } else {
             $f3-> set('errors["productsize"]', "Size Measurement Required");
         } // PRODUCT SIZE
 
         if(validPrice($productPrice)){
-            $_SESSION['product'] = $productPrice;
+            $_SESSION['product_price'] = $productPrice;
         } else {
             $f3-> set('errors["productprice"]', "Enter price");
         } // PRODUCT PRICE
 
         if(isset($productCategory)){
-            $_SESSION['product'] = $productCategory;
+            $_SESSION['product_category'] = $productCategory;
         } else {
             $f3-> set('errors["productcategory"]', "Select a category");
         } // PRODUCT CATEGORY
         var_dump($_SESSION['product']);
         // if no errors - save product to database
         if(empty($f3->get('errors'))){
-            saveProduct($_SESSION['product']);
-            var_dump($_SESSION['product']);
+            saveProduct($_SESSION);
+            var_dump($_SESSION);
 
         }
     }
