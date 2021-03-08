@@ -10,6 +10,9 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="appointment">Book Appointment</a>
+                </li>
                 <!-- Active Nav -->
                 <li class="nav-item active">
                     <a class="nav-link" href="{{@BASE}}">Home</a>
@@ -37,19 +40,31 @@
     <h1 class="text-light">Products</h1>
 </div>
 
-<div class="container text-center mt-5 border border-light">
-    <div class="row">
-        <div class="col-md-6">
-            <img class="img-fluid border border-dark rounded" src="images/product-oils.png" alt="">
-        </div>
-        <div class="col-md-6 mt-5 text-light">
-            <h3>Miracle Serum</h3>
-            <p>Description</p>
-            <button type="button" class="btn btn-primary rounded">BUY NOW</button>
+<!-- Start Product Container -->
+<div class="container text-center border border-light">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-6 text-center align-self-center"> <img class="img-fluid" src="https://i.imgur.com/7a9V4yw.png"> </div>
+            <div class="col-md-6 info">
+                <div class="row title">
+                    <div class="col">
+                        <h2>Herbalism</h2>
+                    </div>
+                    <div class="col text-right"><a href="#"><i class="fa fa-heart-o"></i></a></div>
+                </div>
+                <p>Natural herbal wash</p> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star-half-full"></span> <span id="reviews">1590 Reviews</span>
+                <div class="row price"> <label class="radio"> <input type="radio" name="size1" value="small" checked> <span>
+                                        <div class="row"><big><b>1.5 oz.</b></big></div>
+                                        <div class="row">$12.95</div></a>
+                                    </span> </label> <label class="radio"> <input type="radio" name="size1" value="large"> <span>
+                                        <div class="row"><big><b>4.4 oz.</b></big></div>
+                                        <div class="row">$21.95</div></a>
+                                    </span> </label> </div>
+            </div>
         </div>
     </div>
-</div><!-- Products Container -->
-
+</div>
+<!-- End Product Container -->
 
 <include href="includes/footer.html"></include>
 </body>
