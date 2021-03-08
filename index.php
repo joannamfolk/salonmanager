@@ -98,7 +98,7 @@ $f3->route('GET|POST /admin', function() {
 $f3->route('GET|POST /admin-add-product', function($f3) {
 
     getProducts();
-    var_dump($_SESSION);
+    var_dump($_POST);
     // get data from post array and trim the values
     $productName = trim($_POST['product-name']);
     $productDescription = trim($_POST['product-description']);
@@ -137,14 +137,14 @@ $f3->route('GET|POST /admin-add-product', function($f3) {
         } else {
             $f3-> set('errors["productcategory"]', "Select a category");
         } // PRODUCT CATEGORY
-        var_dump($_SESSION['product']);
+
         // if no errors - save product to database
         if(empty($f3->get('errors'))){
-            saveProduct($_SESSION);
-            var_dump($_SESSION);
-
+            saveProduct();
+            //var_dump();
         }
     }
+    $f3->set('products', getProducts());
 
     $view = new Template();
     echo $view->render('views/admin-add-product.php');

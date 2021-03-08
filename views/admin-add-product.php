@@ -99,22 +99,24 @@
             </div>
         </div>
         <div class="col-8 border">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="images/front-product.png" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Intensive Moisture</h5>
-                    <p class="card-text">Overnight cream for glowing skin</p>
+            <repeat group="{{@products}}" value="{{@product}}">
+                <div class="card d-inline" style="width: 18rem;">
+                    <img class="card-img-top" src="images/front-product.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{@product.product_name}}</h5>
+                        <p class="card-text">{{@product.product_description}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{@product.product_size}}</li>
+                        <li class="list-group-item">{{@product.product_price}}</li>
+                        <li class="list-group-item">{{@product.product_category}}</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">Update Product</a>
+                        <a href="#" class="card-link">Delete Product</a>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">3 oz</li>
-                    <li class="list-group-item">$24.99</li>
-                    <li class="list-group-item">Skin Cremes</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Update Product</a>
-                    <a href="#" class="card-link">Delete Product</a>
-                </div>
-            </div>
+            </repeat>
         </div>
     </div>
 </div>

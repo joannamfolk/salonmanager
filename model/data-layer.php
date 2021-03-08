@@ -39,12 +39,11 @@ function getStylist()
 
 /**
  * This function will save an added product into the database in SM_products table.
- * @param $product array of product values to be entered into database
  *
  */
-function saveProduct($product){
+function saveProduct(){
     require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
-    var_dump($product);
+    //var_dump($product);
 
     // Define query
     $sql = "INSERT INTO SM_products(product_name, product_description, product_size, product_price, product_category) 
@@ -60,13 +59,13 @@ function saveProduct($product){
     $productPrice = trim($_POST['product-price']);
     $productCategory = trim($_POST['product-category']);
 
-    $statement->bindParam(':product_name', $product[$productName], PDO::PARAM_STR);
-    $statement->bindParam(':product_description', $product[$productDescription], PDO::PARAM_STR);
-    $statement->bindParam(':product_size', $product[$productSize], PDO::PARAM_STR);
-    $statement->bindParam(':product_price', $product[$productPrice], PDO::PARAM_STR);
-    $statement->bindParam(':product_category', $product[$productCategory], PDO::PARAM_STR);
+    $statement->bindParam(':product_name', $productName, PDO::PARAM_STR);
+    $statement->bindParam(':product_description', $productDescription, PDO::PARAM_STR);
+    $statement->bindParam(':product_size', $productSize, PDO::PARAM_STR);
+    $statement->bindParam(':product_price', $productPrice, PDO::PARAM_STR);
+    $statement->bindParam(':product_category', $productCategory, PDO::PARAM_STR);
 
-    echo "$product";
+    echo $_POST;
 
     // execute statement
     $statement->execute();
@@ -94,4 +93,5 @@ function getProducts(){
         echo "<p>" . $row['product_name'] . ", " . $row['product_description'] . ", " . $row['product_size'] . ", "
             . $row['product_price'] . ", " . $row['product_category'] . "</p>";
     }
+    return $result;
 }
