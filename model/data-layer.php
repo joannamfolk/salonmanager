@@ -46,3 +46,12 @@ function getProductDescriptions()
     return $descriptions;
 }
 
+/**
+ * Item value
+ */
+
+function getProductValue()
+{
+    $value = array(0,1,2,3,4,5);
+    return $value;
+}
