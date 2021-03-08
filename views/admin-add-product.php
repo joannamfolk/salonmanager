@@ -79,6 +79,7 @@
                         <option value="">Holding Spray</option>
                         <option value="">Styling Pomade</option>
                         <option value="">Serums/Oils</option>
+                        <option value="">Skin Cremes</option>
                     </select>
                     <div class="text-danger">
                         <check if="{{isset(@errors['productcategory'])}}">
@@ -99,15 +100,15 @@
         </div>
         <div class="col-8 border">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
+                <img class="card-img-top" src="images/front-product.png" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Intensive Moisture</h5>
+                    <p class="card-text">Overnight cream for glowing skin</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item">3 oz</li>
+                    <li class="list-group-item">$24.99</li>
+                    <li class="list-group-item">Skin Cremes</li>
                 </ul>
                 <div class="card-body">
                     <a href="#" class="card-link">Update Product</a>

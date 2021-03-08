@@ -22,6 +22,7 @@ $f3->set('DEBUG', 3);
 // HOME ROUTE
 $f3 -> route('GET /', function() {
     //echo "<h1>Hello, world</h1>";
+    session_destroy(); // destroy any session data on home page
     $view = new Template();
     echo $view -> render('views/home.html');
 });
@@ -95,7 +96,7 @@ $f3->route('GET|POST /admin', function() {
 
 // ADMIN - ADD PRODUCT
 $f3->route('GET|POST /admin-add-product', function($f3) {
-    session_destroy();
+
     getProducts();
     var_dump($_SESSION['product']);
     // get data from post array and trim the values
