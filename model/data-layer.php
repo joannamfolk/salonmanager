@@ -60,11 +60,11 @@ function saveProduct($product){
     $productPrice = trim($_POST['product-price']);
     $productCategory = trim($_POST['product-category']);
 
-    $statement->bindParam(':product_name', $product->$productName, PDO::PARAM_STR);
-    $statement->bindParam(':product_description', $product->$productDescription, PDO::PARAM_STR);
-    $statement->bindParam(':product_size', $product->$productSize, PDO::PARAM_STR);
-    $statement->bindParam(':product_price', $product->$productPrice, PDO::PARAM_STR);
-    $statement->bindParam(':product_category', $product->$productCategory, PDO::PARAM_STR);
+    $statement->bindParam(':product_name', $product[$productName], PDO::PARAM_STR);
+    $statement->bindParam(':product_description', $product[$productDescription], PDO::PARAM_STR);
+    $statement->bindParam(':product_size', $product[$productSize], PDO::PARAM_STR);
+    $statement->bindParam(':product_price', $product[$productPrice], PDO::PARAM_STR);
+    $statement->bindParam(':product_category', $product[$productCategory], PDO::PARAM_STR);
 
     echo "$product";
 
