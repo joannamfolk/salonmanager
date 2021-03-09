@@ -96,9 +96,6 @@ $f3->route('GET|POST /admin', function() {
 
 // ADMIN - ADD PRODUCT
 $f3->route('GET|POST /admin-add-product', function($f3) {
-
-    getProducts();
-    var_dump($_POST);
     // get data from post array and trim the values
     $productName = trim($_POST['product-name']);
     $productDescription = trim($_POST['product-description']);

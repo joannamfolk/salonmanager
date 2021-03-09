@@ -100,20 +100,22 @@
         </div>
         <div class="col-8 border">
             <repeat group="{{@products}}" value="{{@product}}">
-                <div class="card d-inline" style="width: 18rem;">
-                    <img class="card-img-top" src="images/front-product.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{@product.product_name}}</h5>
-                        <p class="card-text">{{@product.product_description}}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{@product.product_size}}</li>
-                        <li class="list-group-item">{{@product.product_price}}</li>
-                        <li class="list-group-item">{{@product.product_category}}</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">Update Product</a>
-                        <a href="#" class="card-link">Delete Product</a>
+                <div class="row justify-content-around">
+                    <div class="card d-inline-block mt-3 col-2" style="width: 22rem;">
+                        <img class="card-img-top" src="images/front-product.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{@product.product_name}}</h5>
+                            <p class="card-text">{{@product.product_description}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{@product.product_size}}</li>
+                            <li class="list-group-item">{{@product.product_price}}</li>
+                            <li class="list-group-item">{{@product.product_category}}</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Update Product</a>
+                            <a href="#" class="card-link">Delete Product</a>
+                        </div>
                     </div>
                 </div>
             </repeat>

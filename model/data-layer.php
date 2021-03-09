@@ -3,9 +3,6 @@
  * returns data for salon management application
  * */
 //require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
-
-// Testing 1, 2, 3...
-
 /**
  * Function that returns username for admin login
  */
@@ -68,8 +65,6 @@ function saveProduct(){
     $statement->bindParam(':product_price', $productPrice, PDO::PARAM_STR);
     $statement->bindParam(':product_category', $productCategory, PDO::PARAM_STR);
 
-    echo $_POST;
-
     // execute statement
     $statement->execute();
 
@@ -92,9 +87,11 @@ function getProducts(){
     $statement->execute();
 
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    /*
     foreach ($result as $row) {
         echo "<p>" . $row['product_name'] . ", " . $row['product_description'] . ", " . $row['product_size'] . ", "
             . $row['product_price'] . ", " . $row['product_category'] . "</p>";
     }
+    */
     return $result;
 }
