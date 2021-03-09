@@ -3,6 +3,9 @@
  * returns data for salon management application
  * */
 //require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+
+// Testing 1, 2, 3...
+
 /**
  * Function that returns username for admin login
  */
