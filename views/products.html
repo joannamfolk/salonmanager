@@ -33,22 +33,34 @@
 </nav>
 <!-- Navigation End -->
 
-<div class="container">
-    <h1 class="text-light">Products</h1>
-</div>
+<!-- Products start -->
+<section id="gallery mt-5">
+    <div class="container">
+        <div class="row">
 
-<div class="container text-center mt-5 border border-light">
-    <div class="row">
-        <div class="col-md-6">
-            <img class="img-fluid border border-dark rounded" src="images/product-oils.png" alt="">
-        </div>
-        <div class="col-md-6 mt-5 text-light">
-            <h3>Miracle Serum</h3>
-            <p>Description</p>
-            <button type="button" class="btn btn-primary rounded">BUY NOW</button>
+            <!-- Card starts -->
+            <repeat group="{{@products}}" value="{{@product}}">
+            <div class="col-lg-4 my-4">
+                <div class="card d-inline-block">
+                    <img src="images/product-soap.png" alt="image of our product" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{@product.product_name}}</h5>
+                        <h6>{{@product.product_size}}</h6>
+                        <p class="card-text mb-5">{{@product.product_description}}</p>
+
+                        <p class="card-text">{{@product.product_price}}</p>
+                        <!-- TODO - Shopping Cart?? -->
+<!--                        <a href="" class="btn btn-outline-success btn-sm"></a>-->
+                    </div>
+                </div>
+            </div>
+            </repeat>
+            <!-- Card Ends -->
+
         </div>
     </div>
-</div><!-- Products Container -->
+</section>
+<!-- Products Container -->
 
 
 <include href="includes/footer.html"></include>
