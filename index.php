@@ -6,21 +6,23 @@
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 
+// start session
+session_start();
+
 // Require the autoload file
 require_once('vendor/autoload.php');
 require_once('model/data-layer.php');
-
-// start session
-session_start();
+require_once('model/validate.php');
+require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
 
 // Create an instance of the Base class
 $f3 = Base::instance();
 $f3->set('DEBUG', 3);
-$controller = new Controller($f3);
 
 // HOME ROUTE
 $f3 -> route('GET /', function() {
     //echo "<h1>Hello, world</h1>";
+    session_destroy(); // destroy any session data on home page
     $view = new Template();
     echo $view -> render('views/home.html');
 });
@@ -40,8 +42,9 @@ $f3->route('GET /services', function() {
 });
 
 // STYLIST ROUTE
-$f3->route('GET /stylist', function() {
+$f3->route('GET|POST /stylist', function($f3) {
 
+    $f3->set('stylists', getStylist());
     $view = new Template();
     echo $view->render('views/stylist.html');
 });
@@ -49,7 +52,8 @@ $f3->route('GET /stylist', function() {
 // PRODUCTS ROUTE
 $f3->route('GET /products', function() {
 
-    $GLOBALS['controller']->products();
+    $view = new Template();
+    echo $view->render('views/products.html');
 });
 
 // CONTACT ROUTE
@@ -91,10 +95,59 @@ $f3->route('GET|POST /admin', function() {
 });
 
 // ADMIN - ADD PRODUCT
-$f3->route('GET|POST /admin-add-product', function() {
+$f3->route('GET|POST /admin-add-product', function($f3) {
+
+    getProducts();
+    var_dump($_SESSION);
+    // get data from post array and trim the values
+    $productName = trim($_POST['product-name']);
+    $productDescription = trim($_POST['product-description']);
+    $productSize = trim($_POST['product-size']);
+    $productPrice = trim($_POST['product-price']);
+    $productCategory = trim($_POST['product-category']);
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        // Validate and set error messages
+        if(validProduct($productName)){
+            $_SESSION['product_name'] = $productName;
+        } else {
+            $f3-> set('errors["productname"]', "Product Name Required - Alphabetic Characters Only");
+        } // PRODUCT NAME
+
+        if(validDescription($productDescription)){
+            $_SESSION['product_description'] = $productDescription;
+        } else {
+            $f3-> set('errors["productdescription"]', "Please fill out description for product");
+        } // PRODUCT DESCRIPTION
+
+        if(isset($productSize)){
+            $_SESSION['product_size'] = $productSize;
+        } else {
+            $f3-> set('errors["productsize"]', "Size Measurement Required");
+        } // PRODUCT SIZE
+
+        if(validPrice($productPrice)){
+            $_SESSION['product_price'] = $productPrice;
+        } else {
+            $f3-> set('errors["productprice"]', "Enter price");
+        } // PRODUCT PRICE
+
+        if(isset($productCategory)){
+            $_SESSION['product_category'] = $productCategory;
+        } else {
+            $f3-> set('errors["productcategory"]', "Select a category");
+        } // PRODUCT CATEGORY
+        var_dump($_SESSION['product']);
+        // if no errors - save product to database
+        if(empty($f3->get('errors'))){
+            saveProduct($_SESSION);
+            var_dump($_SESSION);
+
+        }
+    }
 
     $view = new Template();
-    echo $view->render('views/admin-add-product.html');
+    echo $view->render('views/admin-add-product.php');
 });
 
 //  Run fat free - has to be the last thing in the file
