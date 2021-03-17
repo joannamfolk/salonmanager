@@ -12,7 +12,7 @@
  * @return boolean is the product valid.
  */
 function validProduct($productName){
-    return !empty($productName) && ctype_alpha($productName);
+    return !empty($productName);
 }
 
 /**
