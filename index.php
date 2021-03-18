@@ -152,5 +152,40 @@ $f3->route('GET|POST /admin-add-product', function($f3) {
     echo $view->render('views/admin-add-product.php');
 });
 
+//add and query stylist
+$f3->route('GET|POST /admin-add-stylist', function ($f3){
+    getStylish();
+    var_dump($_POST);
+    //get data from post array
+    $stylistFname = $_POST['stylistFirstName'];
+    $stylistLname = $_POST['stylistLastName'];
+    $stylisBio = $_POST['stylisBio'];
+    $stylistSkill = $_POST['stylistSkill'];
+    $stylistNickname = $_POST['stylistNickname'];
+    $stylistPhone = $_POST['stylistPhone'];
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        // Validate and set error messages
+        if(isset($stylistFname)){
+            if (validName($stylistFname)) {
+                $_SESSION['stylist_fname'] = $stylistFname;
+            }
+            else {
+                $f3-> set('errors["fname"]', "Stylist Name is Require - Alphabetic Characters Only");
+            }
+        }
+
+        // if no errors - save product to database
+        if(empty($f3->get('errors'))){
+            insertStylist();
+            //var_dump();
+        }
+    }
+    $f3->set('stylists', getStylish());
+
+    $view = new Template();
+    echo $view->render('views/admin-add-stylist.html');
+
+});
+
 //  Run fat free - has to be the last thing in the file
 $f3->run();

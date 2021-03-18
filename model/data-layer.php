@@ -114,3 +114,53 @@ function getServices(){
 
     return $result;
 }
+
+function getStylish()
+{
+    require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+    // define
+    $sql = "SELECT * FROM SM_Stylists";
+
+    // prepare
+    $statement = $dbh->prepare($sql);
+
+    // execute
+    $statement->execute();
+
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+}
+//insert the stylist by adding in
+function insertStylist()
+{
+    require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+
+    //Define the query
+    $sql = "INSERT INTO SM_stylists(stylist_first_name, stylist_last_name, stylist_about, stylist_skill, stylist_nickname, stylist_phone_number) 
+	            VALUES (:stylist_first_name, :stylist_last_name, :stylist_about, :stylist_skill, :stylist_nickname, :stylist_phone_number)";
+
+    //Prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    $stylistFname = $_POST['stylistFirstName'];
+    $stylistLname = $_POST['stylistLastName'];
+    $stylisBio = $_POST['stylisBio'];
+    $stylistSkill = $_POST['stylistSkill'];
+    $stylistNickname = $_POST['stylistNickname'];
+    $stylistPhone = $_POST['stylistPhone'];
+
+
+    //Bind the parameters
+    $statement->bindParam(':stylist_first_name', $stylistFname, PDO::PARAM_STR);
+    $statement->bindParam(':stylist_last_name', $stylistLname, PDO::PARAM_STR);
+    $statement->bindParam(':stylist_about', $stylisBio, PDO::PARAM_STR);
+    $statement->bindParam(':stylist_skill', $stylistPhone, PDO::PARAM_INT);
+    $statement->bindParam(':stylist_nickname', $stylistSkill, PDO::PARAM_STR);
+    $statement->bindParam(':stylist_phone_number', $stylistNickname, PDO::PARAM_STR);
+
+    //Execute
+    $statement->execute();
+//        $id = $dbh->lastInsertId();
+//        echo "<p>Product Added ID $id</p>";
+}
