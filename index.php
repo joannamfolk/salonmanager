@@ -216,7 +216,7 @@ $f3->route('GET|POST /admin-add-stylist', function ($f3){
     $f3->set('stylists', getStylish());
 
     $view = new Template();
-    echo $view->render('views/admin-add-stylist.html');
+    echo $view->render('views/admin-add-stylist.php');
 
 });
 

@@ -56,7 +56,8 @@ function validPhone($phone)
  * @return bool
  */
 function validBio ($bio){
-    return !empty($bio) && preg_match("/.{2,60}$/", $bio);
+    //return !empty($bio) && preg_match("/.{2,60}$/", $bio);
+    return  !empty($bio);
 }
 
 function validSkill ($skill){
