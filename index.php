@@ -6,18 +6,15 @@
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 
-// start session
+// start session - For shopping/form stickies
 session_start();
+//var_dump($_SESSION);
 
 // Require the autoload file
 require_once('vendor/autoload.php');
 require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
 require_once('model/data-layer.php');
 require_once('model/validate.php');
-
-//Start a session - For shopping/form stickies
-session_start();
-//var_dump($_SESSION);
 
 // Create an instance of the Base class
 $f3 = Base::instance();
