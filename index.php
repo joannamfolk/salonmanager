@@ -163,6 +163,7 @@ $f3->route('GET|POST /admin-add-stylist', function ($f3){
     $stylistSkill = $_POST['stylistSkill'];
     $stylistNickname = $_POST['stylistNickname'];
     $stylistPhone = $_POST['stylistPhone'];
+
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         // Validate and set error messages
