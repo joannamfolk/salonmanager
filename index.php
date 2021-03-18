@@ -159,19 +159,51 @@ $f3->route('GET|POST /admin-add-stylist', function ($f3){
     //get data from post array
     $stylistFname = $_POST['stylistFirstName'];
     $stylistLname = $_POST['stylistLastName'];
-    $stylisBio = $_POST['stylisBio'];
+    $stylistBio = $_POST['stylisBio'];
     $stylistSkill = $_POST['stylistSkill'];
     $stylistNickname = $_POST['stylistNickname'];
     $stylistPhone = $_POST['stylistPhone'];
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
         // Validate and set error messages
-        if(isset($stylistFname)){
-            if (validName($stylistFname)) {
-                $_SESSION['stylist_fname'] = $stylistFname;
-            }
-            else {
-                $f3-> set('errors["fname"]', "Stylist Name is Require - Alphabetic Characters Only");
-            }
+        if (validName($stylistFname)) {
+            $_SESSION['stylist_fname'] = $stylistFname;
+        }
+        else {
+            $f3-> set('errors["fname"]', "Stylist Name is Require - Alphabetic Characters Only");
+        }
+
+
+        if (validName($stylistLname)) {
+            $_SESSION['stylist_lname'] = $stylistLname;
+        }
+        else {
+            $f3-> set('errors["lname"]', "Stylist Name is Require - Alphabetic Characters Only");
+        }
+
+
+        if(validBio($stylistBio)){
+            $_SESSION['stylist_bio'] = $stylistBio;
+        } else {
+            $f3-> set('errors["bio"]', "Please fill out bio for stylist");
+        }
+
+        if(validSkill($stylistSkill)){
+            $_SESSION['stylist_skill'] = $stylistSkill;
+        } else {
+            $f3-> set('errors["skill"]', "Please fill out skill for stylist");
+        }
+
+        if(validNickname($stylistNickname)){
+            $_SESSION['stylist_nickname'] = $stylistNickname;
+        } else {
+            $f3-> set('errors["nickname"]', "Please fill out nickname for stylist");
+        }
+
+        if(validPhone($stylistPhone)){
+            $_SESSION['stylist_phone'] = $stylistPhone;
+        } else {
+            $f3-> set('errors["phone"]', "Phone is require and 10 digit long");
         }
 
         // if no errors - save product to database

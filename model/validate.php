@@ -56,13 +56,13 @@ function validPhone($phone)
  * @return bool
  */
 function validBio ($bio){
-    return !preg_match("/.{2,60}$/", $bio) && !empty($bio);
+    return !empty($bio) && preg_match("/.{2,60}$/", $bio);
 }
 
 function validSkill ($skill){
-    return !preg_match("/.{2,60}$/", $skill) && !empty($skill);
+    return preg_match("/.{2,60}$/", $skill) && !empty($skill);
 }
 
 function validNickname ($nickname){
-    return !preg_match("/.{2,60}$/", $nickname);
+    return preg_match("/.{2,60}$/", $nickname);
 }
