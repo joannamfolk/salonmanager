@@ -137,7 +137,7 @@ function insertStylist()
     require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
 
     //Define the query
-    $sql = "INSERT INTO SM_stylists (stylist_first_name, stylist_last_name, stylist_about, stylist_skill, stylist_nickname, stylist_phone_number) 
+    $sql = "INSERT INTO SM_Stylists (stylist_first_name, stylist_last_name, stylist_about, stylist_skill, stylist_nickname, stylist_phone_number) 
 	            VALUES (:stylist_first_name, :stylist_last_name, :stylist_about, :stylist_skill, :stylist_nickname, :stylist_phone_number)";
 
     //Prepare the statement
@@ -161,27 +161,7 @@ function insertStylist()
 
     //Execute
     $statement->execute();
+    $id = $dbh->lastInsertId();
+    echo "<p> $id</p>";
 
-
-//    $sql = "INSERT INTO SM_products(product_name, product_description, product_size, product_price, product_category)
-//	            VALUES (:product_name, :product_description, :product_size, :product_price, :product_category)";
-//
-//    // Prepare the Statement
-//    $statement = $dbh->prepare($sql);
-//
-//    // Bind the parameters
-//    $productName = trim($_POST['product-name']);
-//    $productDescription = trim($_POST['product-description']);
-//    $productSize = trim($_POST['product-size']);
-//    $productPrice = trim($_POST['product-price']);
-//    $productCategory = trim($_POST['product-category']);
-//
-//    $statement->bindParam(':product_name', $productName, PDO::PARAM_STR);
-//    $statement->bindParam(':product_description', $productDescription, PDO::PARAM_STR);
-//    $statement->bindParam(':product_size', $productSize, PDO::PARAM_STR);
-//    $statement->bindParam(':product_price', $productPrice, PDO::PARAM_STR);
-//    $statement->bindParam(':product_category', $productCategory, PDO::PARAM_STR);
-//
-//    // execute statement
-//    $statement->execute();
 }
