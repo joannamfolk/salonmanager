@@ -33,10 +33,28 @@
     </div>
 </nav>
 <!-- Navigation End -->
-
-<div class="container">
+<div class="container text-center">
     <h1>Services</h1>
+    <table class="table table-striped text-center">
+        <thead>
+        <tr class="font-weight-bolder">
+                <td>Service Name</td>
+                <td>Service Description</td>
+                <td>Price</td>
+        </tr>
+        </thead>
+        <tbody>
+        <repeat group="{{@services}}" value="{{@service}}">
+            <tr>
+                <td>{{@service['service_name']}}</td>
+                <td>{{@service['service_description']}}</td>
+                <td>{{@service['service_price']}}</td>
+            </tr>
+        </repeat>
+        </tbody>
+    </table>
 </div>
+
 
 <include href="includes/footer.html"></include>
 </body>

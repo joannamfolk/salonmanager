@@ -95,3 +95,25 @@ function getProducts(){
     */
     return $result;
 }
+
+/**
+ * This function will query the database and select all services from the database.
+ */
+/**
+ * This function will query the database and select all products from the database.
+ */
+function getServices(){
+    require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+    // define
+    $sql = "SELECT * FROM SM_services";
+
+    // prepare
+    $statement = $dbh->prepare($sql);
+
+    // execute
+    $statement->execute();
+
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+}

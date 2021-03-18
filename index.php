@@ -35,8 +35,8 @@ $f3->route('GET /appointment', function() {
 });
 
 // SERVICES ROUTE
-$f3->route('GET /services', function() {
-
+$f3->route('GET /services', function($f3) {
+    $f3->set('services', getServices());
     $view = new Template();
     echo $view->render('views/services.html');
 });
