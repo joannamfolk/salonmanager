@@ -145,7 +145,7 @@ function insertStylist()
 
     $stylistFname = $_POST['stylistFirstName'];
     $stylistLname = $_POST['stylistLastName'];
-    $stylistBio = $_POST['stylisBio'];
+    $stylistBio = $_POST['stylistBio'];
     $stylistSkill = $_POST['stylistSkill'];
     $stylistNickname = $_POST['stylistNickname'];
     $stylistPhone = $_POST['stylistPhone'];

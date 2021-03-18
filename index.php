@@ -157,12 +157,12 @@ $f3->route('GET|POST /admin-add-stylist', function ($f3){
     getStylish();
     var_dump($_POST);
     //get data from post array
-    $stylistFname = $_POST['stylistFirstName'];
-    $stylistLname = $_POST['stylistLastName'];
-    $stylistBio = $_POST['stylisBio'];
-    $stylistSkill = $_POST['stylistSkill'];
-    $stylistNickname = $_POST['stylistNickname'];
-    $stylistPhone = $_POST['stylistPhone'];
+    $stylistFname = trim($_POST['stylistFirstName']);
+    $stylistLname = trim($_POST['stylistLastName']);
+    $stylistBio = trim($_POST['stylistBio']);
+    $stylistSkill = trim($_POST['stylistSkill']);
+    $stylistNickname = trim($_POST['stylistNickname']);
+    $stylistPhone = trim($_POST['stylistPhone']);
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
