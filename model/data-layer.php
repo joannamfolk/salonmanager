@@ -97,9 +97,6 @@ function getProducts(){
 }
 
 /**
- * This function will query the database and select all services from the database.
- */
-/**
  * This function will query the database and select all products from the database.
  */
 function getServices(){
