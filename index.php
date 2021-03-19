@@ -67,11 +67,20 @@ $f3->route('GET /products', function() {
 });
 
 // CONTACT ROUTE
-$f3->route('GET /contact', function() {
+$f3->route('GET|POST /contact', function() {
 
     // Controller - Contact
     global $controller;
     $controller->contact();
+});
+
+// Form Finish
+//add and query stylist
+$f3->route('GET|POST /form-finish', function (){
+
+    // Controller - Form Finish
+    global $controller;
+    $controller->formFinish();
 });
 
 // LOGIN ROUTE

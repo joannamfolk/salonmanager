@@ -15,9 +15,6 @@ class Controller
     // Home View
     function home()
     {
-        // Destroy session
-        session_destroy();
-
         // View - Home
         $view = new Template();
         echo $view->render('views/home.html');
@@ -72,9 +69,83 @@ class Controller
     function contact()
     {
 
+        global $dataLayer;
+        global $validator;
+
+        // Save On Post
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // Get Session Vars
+            $name = trim($_POST['name']);
+            $phone = trim($_POST['phone']);
+            $email = trim($_POST['email']);
+            $preferredDays = trim($_POST['preferredDays']);
+            $preferredTimes = trim($_POST['preferredTimes']);
+            $comments = trim($_POST['comments']);
+
+            // Name
+            if (!$validator->validName($name)) {
+                $this->_f3->set('errors["name"]', "*Required");
+            }
+
+            // Phone
+            if (!$validator->validPhone($phone)) {
+                $this->_f3->set('errors["phone"]', "*Required");
+            }
+
+            // Email
+            if (!$validator->validEmail($email)) {
+                $this->_f3->set('errors["email"]', "*Required");
+            }
+
+            //If there are selected indoor interests
+            if (isset($_POST['preferredDays'])) {
+                if (!$validator ->validPreferredDays($preferredDays)) {
+                    $this->_f3->set('errors["preferredDays"]', "*ERROR!");
+                }
+            }
+
+            //If there are selected indoor interests
+            if (isset($_POST['preferredTimes'])) {
+                if (!$validator ->validPreferredTimes($preferredTimes)) {
+                    $this->_f3->set('errors["preferredTimes"]', "*ERROR!");
+                }
+            }
+
+            // If Okay
+            if (empty($this->_f3->get('errors'))) {
+                // Build contact
+                $contact = new Contact($name, $phone, $email, $preferredDays, $preferredTimes, $comments);
+
+                // Send to DB
+                $dataLayer->saveContact($contact);
+
+                // Reroute to page
+                $this->_f3->reroute('/form-finish');
+            }
+        }
+
+        // Stickies
+        $this->_f3->set('name', isset($name) ? $name : "");
+        $this->_f3->set('phone', isset($phone) ? $phone  : "");
+        $this->_f3->set('email', isset($email) ? $email : "");
+        $this->_f3->set('preferredDays', isset($preferredDays) ? $preferredDays : "");
+        $this->_f3->set('preferredTimes', isset($preferredTimes) ? $preferredTimes : "");
+        $this->_f3->set('comments', isset($comments) ? $comments : "");
+
         // View _ Contact
         $view = new Template();
         echo $view->render('views/contact.html');
+    }
+
+    function formFinish()
+    {
+        // Destroy session
+        session_destroy();
+
+        // View _ Contact
+        $view = new Template();
+        echo $view->render('views/form-finish.html');
     }
 
     // Login

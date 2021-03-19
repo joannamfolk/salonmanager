@@ -58,8 +58,11 @@
             <!-- Name Start -->
             <div class="form-group">
                 <label class="col-md-7 control-label" for="name">Name: </label>
+                <check if="{{ @errors['name'] }}">
+                    <span class="err">{{ @errors['name'] }}</span>
+                </check>
                 <div class="col-md-7">
-                    <input id="name" name="name" type="text" placeholder="J Doe" class="form-control input-md" required="">
+                    <input id="name" name="name" type="text" placeholder="J Doe" class="form-control input-md">
 
                 </div>
             </div>
@@ -68,8 +71,11 @@
             <!-- Phone Start -->
             <div class="form-group">
                 <label class="col-md-7 control-label" for="phone">Phone: </label>
+                <check if="{{ @errors['phone'] }}">
+                    <span class="err">{{ @errors['phone'] }}</span>
+                </check>
                 <div class="col-md-7">
-                    <input id="phone" name="phone" type="text" placeholder="888-888-8888" class="form-control input-md" required="">
+                    <input id="phone" name="phone" type="text" placeholder="888-888-8888" class="form-control input-md">
 
                 </div>
             </div>
@@ -78,8 +84,11 @@
             <!-- Email Start -->
             <div class="form-group">
                 <label class="col-md-7 control-label" for="email">Email: </label>
+                <check if="{{ @errors['email'] }}">
+                    <span class="err">{{ @errors['email'] }}</span>
+                </check>
                 <div class="col-md-7">
-                    <input id="email" name="email" type="text" placeholder="jdoe@mail.com" class="form-control input-md" required="">
+                    <input id="email" name="email" type="text" placeholder="jdoe@mail.com" class="form-control input-md">
 
                 </div>
             </div>
@@ -88,6 +97,9 @@
             <!-- Preferred Days Start -->
               <div class="form-group">
                   <label class="col-md-7 control-label">Preferred Day(s):</label>
+                  <check if="{{ @errors['preferredDays'] }}">
+                      <span class="err">{{ @errors['preferredDays'] }}</span>
+                  </check>
                   <div class="col-md-7">
                       <div class="checkbox">
                           <label for="preferredDays-0">
@@ -114,6 +126,9 @@
             <!-- Preferred Time Start -->
             <div class="form-group">
                 <label class="col-md-7 control-label">Preferred Time(s): </label>
+                <check if="{{ @errors['preferredTimes'] }}">
+                    <span class="err">{{ @errors['preferredTimes'] }}</span>
+                </check>
                 <div class="col-md-7">
                     <div class="checkbox mx-auto">
                         <label for="preferredTimes-0">

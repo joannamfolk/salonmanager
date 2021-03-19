@@ -167,4 +167,41 @@ class DataLayer
         echo "<p> $id</p>";
 
     }
+
+    // Preferred Days
+    function getPreferredDays()
+    {
+        return array("M-Wed", "Th-Fri", "Sat-Sun");
+    }
+
+    // Preferred Times
+    function getPreferredTimes()
+    {
+        return array("Morning", "Afternoon", "Evening");
+    }
+
+    function saveContact($contact)
+    {
+
+        $sql = "INSERT INTO SM_contact(name, phone, email, preferredDays, preferredTimes, comments, submit);
+	            VALUES(:name, :phone, :email, :preferredDays, :preferredTimes, :comments, :submit)";
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Bind the parameters
+        $statement->bindParam(':name', $contact->getName(), PDO::PARAM_STR);
+        $statement->bindParam(':phone', $contact->getPhone(), PDO::PARAM_STR);
+        $statement->bindParam(':email', $contact->getEmail(), PDO::PARAM_STR);
+        $statement->bindParam(':preferredDays', $contact->getPreferredDays(), PDO::PARAM_STR);
+        $statement->bindParam(':preferredTimes', $contact->getPreferredTimes(), PDO::PARAM_STR);
+        $statement->bindParam(':comments', $contact->getComments(), PDO::PARAM_STR);
+
+
+//        var_dump($sql);
+
+        //Execute
+        $statement->execute();
+        $id = $this->_dbh->lastInsertId();
+    }
 }

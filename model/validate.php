@@ -63,6 +63,14 @@ class Validate
         return !empty($phone) && preg_match("/^\d{10}$/", $phone);
     }
 
+    // Validate Email
+    function validEmail($email)
+    {
+        // Checks if valid email
+        return !empty($email)
+            && (filter_var($email, FILTER_VALIDATE_EMAIL));
+    }
+
     /**
      * @param $bio
      * @return bool
@@ -81,6 +89,32 @@ class Validate
     function validNickname($nickname)
     {
         return preg_match("/.{2,60}$/", $nickname);
+    }
+
+    // Validate Preferred Times
+    function validPreferredTimes($preferredTimes): bool
+    {
+        $validPreferredTimes = $this->_dataLayer->getPreferredTimes();
+
+        foreach ($preferredTimes as $time) {
+            if (!in_array($time, $validPreferredTimes)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Validate Preferred Days
+    function validPreferredDays($preferredDays): bool
+    {
+        $validPreferredDays = $this->_dataLayer->getPreferredDays();
+
+        foreach ($preferredDays as $day) {
+            if (!in_array($day, $validPreferredDays)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
