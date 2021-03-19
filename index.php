@@ -10,6 +10,7 @@ ini_set('display_errors', TRUE);
 session_start();
 //var_dump($_SESSION);
 
+
 // Require the autoload file
 require_once('vendor/autoload.php');
 require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
@@ -22,6 +23,7 @@ $f3->set('DEBUG', 3);
 $dataLayer = new DataLayer($dbh);
 $validator = new Validate($dataLayer);
 
+$contact = new Contact();
 $order = new Order();
 $controller = new Controller($f3);
 
@@ -113,6 +115,14 @@ $f3->route('GET|POST /admin-add-stylist', function (){
     // Controller - Add Stylist
     global $controller;
     $controller->addStylist();
+});
+
+// Admin - View Contacts
+$f3->route('GET|POST /admin-view-contacts', function (){
+
+    // Controller - View Contacts
+    global $controller;
+    $controller->adminViewContacts();
 });
 
 //  Run fat free - has to be the last thing in the file

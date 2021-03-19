@@ -16,18 +16,6 @@ class Contact
     private $_preferredTimes;
     private $_comments;
 
-    // Constructor
-    public function __construct($_name, $_phone, $_age, $_email, $_preferredDays, $_preferredTimes, $_comments)
-    {
-        $this->_name = $_name;
-        $this->_phone = $_phone;
-        $this->_email = $_email;
-        $this->_preferredDays = $_preferredDays;
-        $this->_preferredTimes = $_preferredTimes;
-        $this->_comments = $_comments;
-
-    }
-
     /**
      * Getters & Setters
      */
@@ -49,7 +37,7 @@ class Contact
         return $this->_phone;
     }
 
-    public function setPhone($phone)
+    public function setPhone($phone): void
     {
         $this->_phone = $phone;
     }
@@ -60,7 +48,7 @@ class Contact
         return $this->_email;
     }
 
-    public function setEmail($email)
+    public function setEmail($email): void
     {
         $this->_email = $email;
     }
@@ -71,7 +59,7 @@ class Contact
         return $this->_preferredDays;
     }
 
-    public function setPreferredDays($preferredDays)
+    public function setPreferredDays($preferredDays): void
     {
         $this->_preferredDays = $preferredDays;
     }
@@ -82,7 +70,7 @@ class Contact
         return $this->_preferredTimes;
     }
 
-    public function setPreferredTimes($preferredTimes)
+    public function setPreferredTimes($preferredTimes): void
     {
         $this->_preferredTimes = $preferredTimes;
     }
@@ -93,11 +81,9 @@ class Contact
         return $this->_comments;
     }
 
-    public function setComments($comments)
+    public function setComments($comments): void
     {
         $this->_comments = $comments;
     }
-
-
 
 }

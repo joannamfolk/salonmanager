@@ -71,16 +71,17 @@ class Controller
 
         global $dataLayer;
         global $validator;
+        global $contact;
 
         // Save On Post
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+//            var_dump(trim($_POST['preferredTimes']));
 
             // Get Session Vars
             $name = trim($_POST['name']);
             $phone = trim($_POST['phone']);
             $email = trim($_POST['email']);
-            $preferredDays = trim($_POST['preferredDays']);
-            $preferredTimes = trim($_POST['preferredTimes']);
             $comments = trim($_POST['comments']);
 
             // Name
@@ -98,24 +99,47 @@ class Controller
                 $this->_f3->set('errors["email"]', "*Required");
             }
 
-            //If there are selected indoor interests
-            if (isset($_POST['preferredDays'])) {
-                if (!$validator ->validPreferredDays($preferredDays)) {
-                    $this->_f3->set('errors["preferredDays"]', "*ERROR!");
+            // Preferred Days
+            if(isset($_POST['days'])) {
+
+                //Get days from post array
+                $userDays = $_POST['days'];
+
+                //Data is valid -> Add to session
+                if ($validator->validPreferredDays($userDays)) {
+                    $daysString = implode(", ", $userDays);
+                    $contact->setPreferredDays($daysString);
+                }
+                //Data is not valid -> We've been spoofed!
+                else {
+                    $this->_f3->set('errors["days"]', "*ERROR!!!");
                 }
             }
 
-            //If there are selected indoor interests
-            if (isset($_POST['preferredTimes'])) {
-                if (!$validator ->validPreferredTimes($preferredTimes)) {
-                    $this->_f3->set('errors["preferredTimes"]', "*ERROR!");
+            // Preferred Times
+            //If condiments were selected
+            if(isset($_POST['times'])) {
+
+                //Get condiments from post array
+                $userTimes = $_POST['times'];
+
+                //Data is valid -> Add to session
+                if ($validator->validPreferredTimes($userTimes)) {
+                    $timeString = implode(", ", $userTimes);
+                    $contact->setPreferredTimes($timeString);
+                }
+                //Data is not valid -> We've been spoofed!
+                else {
+                    $this->_f3->set('errors["times"]', "*ERROR!!!");
                 }
             }
 
             // If Okay
             if (empty($this->_f3->get('errors'))) {
-                // Build contact
-                $contact = new Contact($name, $phone, $email, $preferredDays, $preferredTimes, $comments);
+                $contact->setName($name);
+                $contact->setPhone($phone);
+                $contact->setEmail($email);
+                $contact->setComments($comments);
 
                 // Send to DB
                 $dataLayer->saveContact($contact);
@@ -129,9 +153,10 @@ class Controller
         $this->_f3->set('name', isset($name) ? $name : "");
         $this->_f3->set('phone', isset($phone) ? $phone  : "");
         $this->_f3->set('email', isset($email) ? $email : "");
-        $this->_f3->set('preferredDays', isset($preferredDays) ? $preferredDays : "");
-        $this->_f3->set('preferredTimes', isset($preferredTimes) ? $preferredTimes : "");
+        $this->_f3->set('preferredDays', $dataLayer->getPreferredDays());
+        $this->_f3->set('preferredTimes', $dataLayer->getPreferredTimes());
         $this->_f3->set('comments', isset($comments) ? $comments : "");
+        $this->_f3->set('condiments', $dataLayer->getPreferredDays());
 
         // View _ Contact
         $view = new Template();
@@ -140,12 +165,21 @@ class Controller
 
     function formFinish()
     {
-        // Destroy session
-        session_destroy();
-
         // View _ Contact
         $view = new Template();
         echo $view->render('views/form-finish.html');
+    }
+
+    // Admin - View Contacts
+    function adminViewContacts()
+    {
+        global $dataLayer;
+
+        $this->_f3->set('contacts', $dataLayer->getContacts());
+
+        // View - Admin View Contacts
+        $view = new Template();
+        echo $view->render('views/admin-view-contacts.php');
     }
 
     // Login

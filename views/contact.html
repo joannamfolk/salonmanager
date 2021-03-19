@@ -62,7 +62,8 @@
                     <span class="err">{{ @errors['name'] }}</span>
                 </check>
                 <div class="col-md-7">
-                    <input id="name" name="name" type="text" placeholder="J Doe" class="form-control input-md">
+                    <input id="name" name="name" type="text" placeholder="J Doe"
+                           value="{{ @name }}" class="form-control input-md">
 
                 </div>
             </div>
@@ -75,7 +76,8 @@
                     <span class="err">{{ @errors['phone'] }}</span>
                 </check>
                 <div class="col-md-7">
-                    <input id="phone" name="phone" type="text" placeholder="888-888-8888" class="form-control input-md">
+                    <input id="phone" name="phone" type="text" placeholder="10 Digits"
+                           value="{{ @phone }}" class="form-control input-md">
 
                 </div>
             </div>
@@ -88,68 +90,47 @@
                     <span class="err">{{ @errors['email'] }}</span>
                 </check>
                 <div class="col-md-7">
-                    <input id="email" name="email" type="text" placeholder="jdoe@mail.com" class="form-control input-md">
+                    <input id="email" name="email" type="text"
+                           value="{{ @email }}" placeholder="jdoe@mail.com" class="form-control input-md">
 
                 </div>
             </div>
             <!-- Email End -->
 
-            <!-- Preferred Days Start -->
-              <div class="form-group">
-                  <label class="col-md-7 control-label">Preferred Day(s):</label>
-                  <check if="{{ @errors['preferredDays'] }}">
-                      <span class="err">{{ @errors['preferredDays'] }}</span>
-                  </check>
+          <!-- Preferred Days Start -->
+          <div class="form-group">
+          <check if="{{ @errors['days'] }}"><span>{{ @errors['days'] }}</span></check>
+          <div class="form-group">
+              <label class="col-sm-7 control-label">Preferred Day(s):</label>
+              <div class="col-md-7">
                   <div class="col-md-7">
-                      <div class="checkbox">
-                          <label for="preferredDays-0">
-                              <input type="checkbox" name="preferredDays" id="preferredDays-0" value="monWed">
-                              M-W
-                          </label>
-                      </div>
-                      <div class="checkbox">
-                          <label for="preferredDays-1">
-                              <input type="checkbox" name="preferredDays" id="preferredDays-1" value="thursFri">
-                              Th-Fri
-                          </label>
-                      </div>
-                      <div class="checkbox">
-                          <label for="preferredDays-2">
-                              <input type="checkbox" name="preferredDays" id="preferredDays-2" value="satSun">
-                              Sat-Sun
-                          </label>
+                      <repeat group="{{ @preferredDays }}" value="{{ @day }}">
+                          <label><input type="checkbox"
+                                        name="days[]"
+                                        value="{{ @day }}"> {{ ucfirst(@day) }}</label><br>
+                      </repeat>
+                  </div>
+              </div>
+          </div>
+          </div>
+          <!-- Preferred Days End -->
+
+            <!-- Preferred Time Start -->
+              <div class="form-group">
+                  <check if="{{ @errors['times'] }}"><span>{{ @errors['times'] }}</span></check>
+                  <div class="form-group">
+                      <label class="col-sm-7 control-label">Preferred Time(s):</label>
+                      <div class="col-md-7">
+                          <div class="col-md-7">
+                              <repeat group="{{ @preferredTimes }}" value="{{ @time }}">
+                                  <label><input type="checkbox"
+                                                name="times[]"
+                                                value="{{ @time }}"> {{ ucfirst(@time) }}</label><br>
+                              </repeat>
+                          </div>
                       </div>
                   </div>
               </div>
-            <!-- Preferred Days End -->
-
-            <!-- Preferred Time Start -->
-            <div class="form-group">
-                <label class="col-md-7 control-label">Preferred Time(s): </label>
-                <check if="{{ @errors['preferredTimes'] }}">
-                    <span class="err">{{ @errors['preferredTimes'] }}</span>
-                </check>
-                <div class="col-md-7">
-                    <div class="checkbox mx-auto">
-                        <label for="preferredTimes-0">
-                            <input type="checkbox" name="preferredTimes" id="preferredTimes-0" value="morning">
-                            Morning
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label for="preferredTimes-1">
-                            <input type="checkbox" name="preferredTimes" id="preferredTimes-1" value="afternoon">
-                            Afternoon
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label for="preferredTimes-2">
-                            <input type="checkbox" name="preferredTimes" id="preferredTimes-2" value="evening">
-                            Evening
-                        </label>
-                    </div>
-                </div>
-            </div>
             <!-- Preferred Time End -->
 
             <!-- Comments Start -->

@@ -180,11 +180,13 @@ class DataLayer
         return array("Morning", "Afternoon", "Evening");
     }
 
+    // Save Contacts - SQL
     function saveContact($contact)
     {
 
-        $sql = "INSERT INTO SM_contact(name, phone, email, preferredDays, preferredTimes, comments, submit);
-	            VALUES(:name, :phone, :email, :preferredDays, :preferredTimes, :comments, :submit)";
+        // SQL Statement
+        $sql = "INSERT INTO SM_contacts(name, phone, email, preferredDays, preferredTimes, comments)
+	            VALUES(:name, :phone, :email, :preferredDays, :preferredTimes, :comments)";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -197,11 +199,26 @@ class DataLayer
         $statement->bindParam(':preferredTimes', $contact->getPreferredTimes(), PDO::PARAM_STR);
         $statement->bindParam(':comments', $contact->getComments(), PDO::PARAM_STR);
 
-
-//        var_dump($sql);
-
         //Execute
         $statement->execute();
         $id = $this->_dbh->lastInsertId();
     }
+
+    // Get Contacts - SQL
+    function getContacts()
+    {
+        //Define the query
+        $sql = 'SELECT * FROM SM_contacts ORDER BY query DESC';
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Execute
+        $statement->execute();
+
+        //Get the results
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
 }
