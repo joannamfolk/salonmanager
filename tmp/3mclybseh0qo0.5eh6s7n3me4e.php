@@ -1,10 +1,10 @@
-<include href="includes/header.html"></include>
+<?php echo $this->render('includes/header.html',NULL,get_defined_vars(),0); ?>
 
 <body class="products-body">
 <!-- Navigation Start -->
 <nav id="" class="navbar navbar-expand-lg static-top">
     <div class="container">
-        <a class="navbar-brand" href="{{@BASE}}"><img src="images/logo.png" alt="Studio 11 logo"></a>
+        <a class="navbar-brand" href="<?= ($BASE) ?>"><img src="images/logo.png" alt="Studio 11 logo"></a>
         <button class="navbar-toggler navbar-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,7 +12,7 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Active Nav -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{@BASE}}">Home</a>
+                    <a class="nav-link" href="<?= ($BASE) ?>">Home</a>
                 </li>
                 <!-- End Active Nav -->
                 <li class="nav-item">
@@ -39,23 +39,23 @@
         <div class="row">
 
             <!-- Card starts -->
-            <repeat group="{{@products}}" value="{{@product}}">
+            <?php foreach (($products?:[]) as $product): ?>
             <div class="col-lg-4 my-4">
                 <div class="card d-inline-block">
                     <img src="images/product-soap.png" alt="image of our product" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{@product.product_name}}</h5>
-                        <h6 class="inline-block">{{@product.product_size}}</h6>
-                        <p class="card-text mb-5">{{@product.product_description}}</p>
+                        <h5 class="card-title"><?= ($product['product_name']) ?></h5>
+                        <h6 class="inline-block"><?= ($product['product_size']) ?></h6>
+                        <p class="card-text mb-5"><?= ($product['product_description']) ?></p>
 
-                        <p class="card-text">{{@product.product_price}}</p>
+                        <p class="card-text"><?= ($product['product_price']) ?></p>
 <!--                        &lt;!&ndash; TODO - Shopping Cart?? &ndash;&gt;-->
 <!--                        <a href="" class="btn btn-outline-success mb-3 float-right">Buy Now!</a>-->
 
                     </div>
                 </div>
             </div>
-            </repeat>
+            <?php endforeach; ?>
             <!-- Card Ends -->
 
 <!--            &lt;!&ndash; Form Starts &ndash;&gt;-->
@@ -93,5 +93,5 @@
 <!-- Products Container -->
 
 
-<include href="includes/footer.html"></include>
+<?php echo $this->render('includes/footer.html',NULL,get_defined_vars(),0); ?>
 </body>

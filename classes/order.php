@@ -9,19 +9,19 @@ class Order
 {
 
     // Checkout basics
-    private $_items;
+    private $_item;
     private $_name;
     private $_card;
 
     // Setters/Getters
-    public function getItems()
+    public function getItem()
     {
-        return $this->_items;
+        return $this->_item;
     }
 
-    public function setItems($items): void
+    public function setItem($item): void
     {
-        $this->_item = $items;
+        $this->_item = $item;
     }
 
     public function getName()
