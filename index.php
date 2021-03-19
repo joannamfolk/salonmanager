@@ -110,11 +110,30 @@ $f3->route('GET|POST /admin-add-product', function() {
 });
 
 //add and query stylist
-$f3->route('GET|POST /admin-add-stylist', function (){
+$f3->route('GET|POST /admin-add-stylist-form', function (){
 
     // Controller - Add Stylist
     global $controller;
     $controller->addStylist();
+});
+//delete stylist
+$f3->route('GET|POST /admin-delete-stylist-form', function (){
+
+    // Controller - Add Stylist
+    global $controller;
+    $controller->deleteStylist();
+});
+//update stylist
+$f3->route('GET|POST /admin-delete-stylist-form', function (){
+
+    // Controller - Add Stylist
+    global $controller;
+    $controller->updateStylist();
+});
+//stylist alternation page
+$f3->route('GET|POST /admin-add-stylist', function () {
+    $view = new Template();
+    echo $view->render('views/admin-add-stylist.php');
 });
 
 // Admin - View Contacts

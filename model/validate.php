@@ -71,6 +71,25 @@ class Validate
             && (filter_var($email, FILTER_VALIDATE_EMAIL));
     }
 
+    function updateName($name)
+    {
+        return  ctype_alpha($name);
+    }
+    function updateBio($bio)
+    {
+        return preg_match("/.{2,60}$/", $bio);
+    }
+
+    function updateSkill ($skill)
+    {
+        return preg_match("/.{2,60}$/", $skill) ;
+    }
+
+    function updatePhone ($phone)
+    {
+        return preg_match("/^\d{10}$/", $phone);
+    }
+
     /**
      * @param $bio
      * @return bool

@@ -167,6 +167,124 @@ class DataLayer
         echo "<p> $id</p>";
 
     }
+    function deleteStylist()
+    {
+        require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+
+        //DEFINE QUERY
+        $sql = "SELECT * FROM SM_Stylists";
+        //" WHERE stylist_first_name =:stylist_first_name and stylist_last_name = :stylist_last_name ";
+
+        //PREPARE
+        $statement = $dbh->prepare($sql);
+        //set
+//    $stylistFname = $_POST['stylistFirstName'];
+//    $stylistLname = $_POST['stylistLastName'];
+
+        //bind
+//    $statement->bindParam(':stylist_first_name', $stylistFname, PDO::PARAM_STR);
+//    $statement->bindParam(':stylist_last_name', $stylistLname, PDO::PARAM_STR);
+
+        //execute
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($statement->rowCount() == 0) {
+
+            echo "<h2>No result found</h2>";
+        }
+        else {
+            $sql = "DELETE FROM SM_Stylists WHERE stylist_first_name =:stylist_first_name and stylist_last_name = :stylist_last_name ";
+
+            //PREPARE
+            $statement = $dbh->prepare($sql);
+            //set
+            $stylistFname = $_POST['stylistFirstName'];
+            $stylistLname = $_POST['stylistLastName'];
+
+            //bind
+            $statement->bindParam(':stylist_first_name', $stylistFname, PDO::PARAM_STR);
+            $statement->bindParam(':stylist_last_name', $stylistLname, PDO::PARAM_STR);
+
+            //execute
+            $statement->execute();
+
+            //$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            echo "<h2>Stylist $stylistLname $stylistLname was successful remove</h2>";
+
+        }
+    }
+
+    //update stylist info
+    function updateStylist()
+    {
+        require $_SERVER['DOCUMENT_ROOT'] . '/../config.php';
+
+        //DEFINE QUERY
+//    $sql = "SELECT * FROM SM_Stylists WHERE (stylist_first_name = :stylist_first_name and stylist_last_name = :stylist_last_name) or
+//stylist_phone_number =:stylist_phone_number";
+
+        $sql = "SELECT * FROM SM_Stylists";
+        //PREPARE
+        $statement = $dbh->prepare($sql);
+        //set
+//    $stylistFname = $_POST['stylistFirstName'];
+//    $stylistLname = $_POST['stylistLastName'];
+//    $stylistBio = $_POST['stylistBio'];
+//    $stylistSkill = $_POST['stylistSkill'];
+//    $stylistNickname = $_POST['stylistNickname'];
+//    $stylistPhone = $_POST['stylistPhone'];
+
+        //bind
+//    $statement->bindParam(':stylist_first_name', $stylistFname, PDO::PARAM_STR);
+//    $statement->bindParam(':stylist_last_name', $stylistLname, PDO::PARAM_STR);
+//    $statement->bindParam(':stylist_about', $stylistBio, PDO::PARAM_STR);
+//    $statement->bindParam(':stylist_skill', $stylistSkill, PDO::PARAM_STR);
+//    $statement->bindParam(':stylist_nickname', $stylistNickname, PDO::PARAM_STR);
+//    $statement->bindParam(':stylist_phone_number', $stylistPhone, PDO::PARAM_INT);
+        //execute
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($statement->rowCount() == 0) {
+
+            echo "<h2>No result found</h2>";
+        } else {
+            $sql = "UPDATE SM_Stylists SET stylist_first_name =:stylist_first_name, stylist_last_name = :stylist_last_name,
+        stylist_about = :stylist_about, stylist_skill = :stylist_skill, stylist_nickname = :stylist_nickname,
+        stylist_phone_number =:stylist_phone_number WHERE stylist_first_name = :stylist_first_name and stylist_last_name = :stylist_last_name";
+//        $sql = "UPDATE SM_Stylists SET stylist_first_name =:stylist_first_name, stylist_last_name = :stylist_last_name,
+//        stylist_about = :stylist_about, stylist_skill = :stylist_skill, stylist_nickname = :stylist_nickname,
+//        stylist_phone_number =:stylist_phone_number WHERE
+//        stylist_phone_number =: stylist_phone_number";
+
+            //PREPARE
+            $statement = $dbh->prepare($sql);
+            //set
+            $stylistFname = $_POST['stylistFirstName'];
+            $stylistLname = $_POST['stylistLastName'];
+            $stylistBio = $_POST['stylistBio'];
+            $stylistSkill = $_POST['stylistSkill'];
+            $stylistNickname = $_POST['stylistNickname'];
+            $stylistPhone = $_POST['stylistPhone'];
+            //bind
+            $statement->bindParam(':stylist_first_name', $stylistFname, PDO::PARAM_STR);
+            $statement->bindParam(':stylist_last_name', $stylistLname, PDO::PARAM_STR);
+            $statement->bindParam(':stylist_about', $stylistBio, PDO::PARAM_STR);
+            $statement->bindParam(':stylist_skill', $stylistSkill, PDO::PARAM_STR);
+            $statement->bindParam(':stylist_nickname', $stylistNickname, PDO::PARAM_STR);
+            $statement->bindParam(':stylist_phone_number', $stylistPhone, PDO::PARAM_INT);
+            //execute
+            $statement->execute();
+
+            //$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            echo "<h2> $stylistFname $stylistLname was update successful successful</h2>";
+
+        }
+    }
+
 
     // Preferred Days
     function getPreferredDays()

@@ -363,9 +363,136 @@ class Controller
 
         // Add Stylist
         $this->_f3->set('stylists', $dataLayer->getStylish());
-
+        $this->_f3->set('fname', isset($stylistFname) ? $stylistFname : "");
+        $this->_f3->set('lname', isset($stylistLname) ? $stylistLname : "");
+        $this->_f3->set('bio', isset($stylistBio) ? $stylistBio : "");
+        $this->_f3->set('skill', isset($stylistSkill) ? $stylistSkill : "");
+        $this->_f3->set('nickname', isset($stylistNickname) ? $stylistNickname : "");
+        $this->_f3->set('phone', isset($stylistPhone) ? $stylistPhone : "");
         // View - Add Stylist
         $view = new Template();
-        echo $view->render('views/admin-add-stylist.php');
+        echo $view->render('views/admin-add-stylist-form.php');
+    }
+
+    function deleteStylist()
+    {
+        global $dataLayer;
+        global $validator;
+
+        $stylistFname = trim($_POST['stylistFirstName']);
+        $stylistLname = trim($_POST['stylistLastName']);
+
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            // Validate and set error messages
+            if ($validator->validName($stylistFname)) {
+                $_SESSION['stylist_fname'] = $stylistFname;
+            }
+            else {
+                $this->_f3-> set('errors["fname"]', "Stylist Name is Require - Alphabetic Characters Only");
+            }
+
+
+            if ($validator->validName($stylistLname)) {
+                $_SESSION['stylist_lname'] = $stylistLname;
+            }
+            else {
+                $this->_f3-> set('errors["lname"]', "Stylist Name is Require - Alphabetic Characters Only");
+            }
+
+            // if no errors - save product to database
+            if(empty($this->_f3->get('errors'))){
+                $dataLayer->deleteStylist();
+                //var_dump();
+            }
+        }
+
+        //set sticky form beehive
+        //$f3->set('stylists', getStylish());
+        $this->_f3->set('fname', isset($stylistFname) ? $stylistFname : "");
+        $this->_f3->set('lname', isset($stylistLname) ? $stylistLname : "");
+
+
+
+        $view = new Template();
+        echo $view->render('views/admin-delete-stylist-form.php');
+    }
+
+    function updateStylist()
+    {
+        global $dataLayer;
+        global $validator;
+        $stylistFname = trim($_POST['stylistFirstName']);
+        $stylistLname = trim($_POST['stylistLastName']);
+        $stylistBio = trim($_POST['stylistBio']);
+        $stylistSkill = trim($_POST['stylistSkill']);
+        $stylistNickname = trim($_POST['stylistNickname']);
+        $stylistPhone = trim($_POST['stylistPhone']);
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            // Validate and set error messages
+            if(isset($stylistFname)){
+                if ($validator->updateName($stylistFname)) {
+                    $_SESSION['stylist_fname'] = $stylistFname;
+                }
+                else {
+                    $this->_f3-> set('errors["fname"]', "Please enter a valid name");
+                }
+            }
+
+            if ($validator->updateName($stylistLname)) {
+                $_SESSION['stylist_lname'] = $stylistLname;
+            }
+            else {
+                $this->_f3-> set('errors["lname"]', "Please enter a valid name");
+            }
+
+
+            if($validator->updateBio($stylistBio)){
+                $_SESSION['stylist_bio'] = $stylistBio;
+            } else {
+                $this->_f3-> set('errors["bio"]', "Please enter a valid input");
+            }
+
+            if($validator->updateSkill($stylistSkill)){
+                $_SESSION['stylist_skill'] = $stylistSkill;
+            } else {
+                $this->_f3-> set('errors["skill"]', "Please enter a valid input");
+            }
+
+            if($validator->validNickname($stylistNickname)){
+                $_SESSION['stylist_nickname'] = $stylistNickname;
+            } else {
+                $this->_f3-> set('errors["nickname"]', "Please enter a valid name in put");
+            }
+
+            if($validator->updatePhone($stylistPhone)){
+                $_SESSION['stylist_phone'] = $stylistPhone;
+            } else {
+                $this->_f3-> set('errors["phone"]', "Please enter valid phone number (10 digit)");
+            }
+
+            // if no errors - save product to database
+            if(empty($this->_f3->get('errors'))){
+                $dataLayer->updateStylist();
+                //var_dump();
+            }
+        }
+
+
+        //set sticky form beehive
+        $this->_f3->set('stylists', $dataLayer->getStylish());
+        $this->_f3->set('fname', isset($stylistFname) ? $stylistFname : "");
+        $this->_f3->set('lname', isset($stylistLname) ? $stylistLname : "");
+        $this->_f3->set('bio', isset($stylistBio) ? $stylistBio : "");
+        $this->_f3->set('skill', isset($stylistSkill) ? $stylistSkill : "");
+        $this->_f3->set('nickname', isset($stylistNickname) ? $stylistNickname : "");
+        $this->_f3->set('phone', isset($stylistPhone) ? $stylistPhone : "");
+
+
+        $view = new Template();
+        echo $view->render('views/admin-update-stylist-form.php');
     }
 }
