@@ -63,7 +63,7 @@ $f3->route('GET /products', function() {
 
     // Controller - Products
     global $controller;
-    $controller->stylists();
+    $controller->products();
 });
 
 // CONTACT ROUTE

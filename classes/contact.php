@@ -8,14 +8,19 @@
 class Order
 {
 
-    // Contact basics
+    // Encapsulated Contact Vars
     private $_name;
     private $_phone;
     private $_email;
-    private $_preferedDays;
-    private $_preferedTimes;
+    private $_preferredDays;
+    private $_preferredTimes;
+    private $_comments;
 
-    // Getters/Setters
+    /**
+     * Getters & Setters
+     */
+
+    // Name
     public function getName()
     {
         return $this->_name;
@@ -26,6 +31,7 @@ class Order
         $this->_name = $name;
     }
 
+    // Phone
     public function getPhone()
     {
         return $this->_phone;
@@ -36,6 +42,7 @@ class Order
         $this->_phone = $phone;
     }
 
+    // Email
     public function getEmail()
     {
         return $this->_email;
@@ -46,24 +53,39 @@ class Order
         $this->_email = $email;
     }
 
-    public function getPreferedDays()
+    // Preferred Days
+    public function getPreferredDays()
     {
-        return $this->_preferedDays;
+        return $this->_preferredDays;
     }
 
-    public function setPreferedDays($preferedDays)
+    public function setPreferredDays($preferredDays)
     {
-        $this->_preferedDays = $preferedDays;
+        $this->_preferredDays = $preferredDays;
     }
 
-    public function getPreferedTimes()
+    // Preferred Times
+    public function getPreferredTimes()
     {
-        return $this->_preferedTimes;
+        return $this->_preferredTimes;
     }
 
-    public function setPreferedTimes($preferedTimes)
+    public function setPreferredTimes($preferredTimes)
     {
-        $this->_preferedTimes = $preferedTimes;
+        $this->_preferredTimes = $preferredTimes;
     }
+
+    // Comments
+    public function getComments()
+    {
+        return $this->_comments;
+    }
+
+    public function setComments($comments)
+    {
+        $this->_comments = $comments;
+    }
+
+
 
 }

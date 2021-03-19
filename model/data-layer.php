@@ -4,6 +4,7 @@ class DataLayer
 {
     private $_dbh;
 
+    // Constructor
     function __construct($dbh)
     {
         $this->_dbh = $dbh;
@@ -55,7 +56,7 @@ class DataLayer
                     VALUES (:product_name, :product_description, :product_size, :product_price, :product_category)";
 
         // Prepare the Statement
-        $statement = $dbh->prepare($sql);
+        $statement = $this->_dbh->prepare($sql);
 
         // Bind the parameters
         $productName = trim($_POST['product-name']);
@@ -73,7 +74,7 @@ class DataLayer
         // execute statement
         $statement->execute();
 
-        $id = $dbh->lastInsertId();
+        $id = $this->_dbh->lastInsertId();
         echo "<p>Product Added ID $id</p>";
     }
 
@@ -85,7 +86,7 @@ class DataLayer
         $sql = "SELECT * FROM SM_products";
 
         // prepare
-        $statement = $dbh->prepare($sql);
+        $statement = $this->_dbh->prepare($sql);
 
         // execute
         $statement->execute();
@@ -108,7 +109,7 @@ class DataLayer
         $sql = "SELECT * FROM SM_services";
 
         // prepare
-        $statement = $dbh->prepare($sql);
+        $statement = $this->_dbh->prepare($sql);
 
         // execute
         $statement->execute();
@@ -124,7 +125,7 @@ class DataLayer
         $sql = "SELECT * FROM SM_Stylists";
 
         // prepare
-        $statement = $dbh->prepare($sql);
+        $statement = $this->_dbh->prepare($sql);
 
         // execute
         $statement->execute();
@@ -142,7 +143,7 @@ class DataLayer
                     VALUES (:stylist_first_name, :stylist_last_name, :stylist_about, :stylist_skill, :stylist_nickname, :stylist_phone_number)";
 
         //Prepare the statement
-        $statement = $dbh->prepare($sql);
+        $statement = $this->_dbh->prepare($sql);
 
         $stylistFname = $_POST['stylistFirstName'];
         $stylistLname = $_POST['stylistLastName'];
@@ -162,7 +163,7 @@ class DataLayer
 
         //Execute
         $statement->execute();
-        $id = $dbh->lastInsertId();
+        $id = $this->_dbh->lastInsertId();
         echo "<p> $id</p>";
 
     }
