@@ -46,6 +46,35 @@ class DataLayer
     }
 
     /**
+     * This function will save an added service into the database in SM_services table.
+     */
+    function saveService(){
+
+        // Define query
+        $sql = "INSERT INTO SM_services(service_name, service_description, service_price) 
+                    VALUES (:service_name, :service_description, :service_price)";
+
+        // Prepare the Statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // Bind the parameters
+        $serviceName = trim($_POST['service-name']);
+        $serviceDescription = trim($_POST['service-description']);
+        $servicePrice = trim($_POST['service-price']);
+
+
+        $statement->bindParam(':service_name', $serviceName, PDO::PARAM_STR);
+        $statement->bindParam(':service_description', $serviceDescription, PDO::PARAM_STR);
+        $statement->bindParam(':service_price', $servicePrice, PDO::PARAM_STR);
+
+        // execute statement
+        $statement->execute();
+
+        $id = $this->_dbh->lastInsertId();
+        echo "<p>Service Added ID $id</p>";
+    }
+
+    /**
      * This function will save an added product into the database in SM_products table.
      */
     function saveProduct(){

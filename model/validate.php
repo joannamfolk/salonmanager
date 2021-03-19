@@ -26,6 +26,17 @@ class Validate
     }
 
     /**
+     * This function will check if the product name entry is valid.
+     * @param productName the product being checked for validation
+     * @return boolean is the product valid.
+     */
+    function validService($serviceName)
+    {
+        return !empty($serviceName);
+    }
+
+
+    /**
      * This function will check if the description test area is not left empty
      * @param productName the product being checked for validation
      * @return boolean is the product valid.

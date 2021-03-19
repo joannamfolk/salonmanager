@@ -101,12 +101,20 @@ $f3->route('GET|POST /admin', function() {
     $controller->admin();
 });
 
-// ADMIN - ADD PRODUCT
+// ADMIN - PRODUCTS
 $f3->route('GET|POST /admin-add-product', function() {
 
     // Controller - Add Product
     global $controller;
     $controller->addProduct();
+});
+
+// ADMIN - SERVICES
+$f3->route('GET|POST /admin-add-service', function() {
+
+    // Controller - Add Product
+    global $controller;
+    $controller->addService();
 });
 
 //add and query stylist

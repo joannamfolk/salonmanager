@@ -220,6 +220,61 @@ class Controller
         echo $view->render('views/admin.html');
     }
 
+    // Add Service
+    function addService()
+    {
+
+        global $dataLayer;
+        global $validator;
+
+        $dataLayer->getServices();
+        //var_dump($_POST);
+
+        // get data from post array and trim the values
+        $serviceName = trim($_POST['service-name']);
+        $serviceDescription = trim($_POST['service-description']);
+        $servicePrice = trim($_POST['service-price']);
+
+
+        // Validate and set error messages
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            // Validate Name
+            if($validator->validService($serviceName)){
+                $_SESSION['service_name'] = $serviceName;
+            } else {
+                $this->_f3->set('errors["servicename"]', "Service Name Required");
+            }
+
+            // Validate - Description
+            if($validator->validDescription($serviceDescription)){
+                $_SESSION['service_description'] = $serviceDescription;
+            } else {
+                $this->_f3->set('errors["servicedescription"]', "Please fill out description for service");
+            }
+
+
+            // Validate - Producte Price
+            if($validator->validPrice($servicePrice)){
+                $_SESSION['service_price'] = $servicePrice;
+            } else {
+                $this->_f3->set('errors["serviceprice"]', "Enter price");
+            }
+
+            // if no errors - save product to database
+            if(empty($this->_f3->get('errors'))){
+                $dataLayer->saveService();
+            }
+        }
+
+        // Add Service
+        $this->_f3->set('services', $dataLayer->getServices());
+
+        // View - Add Service
+        $view = new Template();
+        echo $view->render('views/admin-add-service.php');
+    }
+
     // Add Product
     function addProduct()
     {
@@ -228,7 +283,7 @@ class Controller
         global $validator;
 
         $dataLayer->getProducts();
-        var_dump($_POST);
+        //var_dump($_POST);
 
         // get data from post array and trim the values
         $productName = trim($_POST['product-name']);
@@ -278,7 +333,6 @@ class Controller
             // if no errors - save product to database
             if(empty($this->_f3->get('errors'))){
                 $dataLayer->saveProduct();
-                //var_dump();
             }
         }
 
