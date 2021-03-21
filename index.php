@@ -1,15 +1,10 @@
 <?php
-
-// Will see internal error - no root somethingerother error in browser
-
 // Turn on error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 
 // start session - For shopping/form stickies
 session_start();
-//var_dump($_SESSION);
-
 
 // Require the autoload file
 require_once('vendor/autoload.php');
@@ -86,7 +81,7 @@ $f3->route('GET|POST /form-finish', function (){
 });
 
 // LOGIN ROUTE
-$f3->route('GET|POST /login', function($f3) {
+$f3->route('GET|POST /login', function() {
 
     // Controller - Login
     global $controller;

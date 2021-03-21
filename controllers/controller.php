@@ -185,27 +185,36 @@ class Controller
     // Login
     function login()
     {
-
         global $dataLayer;
 
-        // Get Admin User/Session Array
-        $adminLogin = $dataLayer->getAdminUsername();
-        $userLogin = trim($_POST['username']);
-
-        // Get Admin Password/Session Array
-        $adminPassword = $dataLayer->getAdminPassword();
-        $userPassword = trim($_POST['password']);
-
         // If valid - continue - else echo "INVALID"
-        if (isset($_POST['login']) && !empty($_POST['username'])
-        && !empty($_POST['password'])) {
-        if($userLogin == $adminLogin && $userPassword == $adminPassword){
-        $_SESSION['valid'] = true;
-        $_SESSION['username'] = $adminLogin;
-        $this->_f3->reroute('views/admin.html');
-        } else{
-            echo "INVALID";
-        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            // Get Admin Username and Password From DB to start session with logged in admin
+            $adminLogin = $dataLayer->getAdminLogin();
+            $userLogin = trim($_POST['username']);
+            $userPassword = trim(sha1($_POST['password']));
+
+            print_r($adminLogin);
+            // Check Username
+            if($userLogin == $adminLogin['admin_username']){
+                $_SESSION['admin_username'] = $userLogin;
+            } else{
+                $this->_f3->set('errors["username"]', "Invalid Username");
+            }
+
+            // Check Password
+            if($userPassword == $adminLogin['admin_password']){
+                $_SESSION['admin_password'] = $userPassword;
+            } else{
+                $this->_f3->set('errors["password"]', "Invalid Password");
+            }
+            var_dump($_POST);
+            var_dump($_SESSION['admin_username']);
+
+            if(empty($this->_f3->get('errors'))){
+                $this->_f3->reroute('admin');
+                header('location : admin.html');
+            }
         }
 
         // View - Login
@@ -213,9 +222,17 @@ class Controller
         echo $view->render('views/login.html');
     }
 
+    // Logout
+    function logout(){
+        session_destroy();
+        $_SESSION = array();
+        header('location: login.html');
+    }
+
     // Admin
     function admin()
     {
+        var_dump($_SESSION);
         $view = new Template();
         echo $view->render('views/admin.html');
     }

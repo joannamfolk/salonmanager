@@ -12,22 +12,33 @@ class DataLayer
 
     /* model/data-layer.php
      * returns data for salon management application
-     * Function that returns username for admin login
      */
-    function getAdminUsername()
+
+    // ADMIN USERNAME AND PASSWORD
+    function getAdminLogin()
     {
-        // temporary default username
-        return "admin";
+        // connect to the database
+        require($_SERVER['DOCUMENT_ROOT']."/../config.php");
+
+        // define
+        $sql = "SELECT * FROM SM_admin WHERE admin_username = :admin_username AND admin_password = :admin_password";
+
+        // prepare
+        $statement = $this->_dbh->prepare($sql);
+
+        // bind the parameters
+        $statement->bindParam('admin_username', $_POST['username'], PDO::PARAM_STR);
+        $statement->bindParam('admin_password', sha1($_POST['password']), PDO::PARAM_STR);
+
+        // execute
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        //echo print_r($result);
+        return $result;
     }
 
-    /**
-     * Function that returns password
-     */
-    function getAdminPassword()
-    {
-        // temporary default password
-        return "password";
-    }
 
     /**
      * @return string[][] function return stylist name, bio, skills, nicknames, and the path to their img asscociate
