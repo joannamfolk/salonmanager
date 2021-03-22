@@ -127,7 +127,7 @@ $f3->route('GET|POST /admin-delete-stylist-form', function (){
     $controller->deleteStylist();
 });
 //update stylist
-$f3->route('GET|POST /admin-delete-stylist-form', function (){
+$f3->route('GET|POST /admin-update-stylist-form', function (){
 
     // Controller - Add Stylist
     global $controller;

@@ -368,7 +368,7 @@ class Controller
         global $validator;
 
         $dataLayer->getStylish();
-        var_dump($_POST);
+        //var_dump($_POST);
 
         //get data from post array
         $stylistFname = trim($_POST['stylistFirstName']);
