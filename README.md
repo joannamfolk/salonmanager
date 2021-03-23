@@ -17,6 +17,7 @@ The application offers salon management concepts allowing administration to have
 **Database Relations**
 
 All pages can access (Admin || User Links)
+
 Admin can access (Manage Products, Stylists, Services, Inventory, Employment Status, & Queries)
 
 -	(In Admin) Manage Products Connects (dB) SM_products to products.html
