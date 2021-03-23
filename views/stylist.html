@@ -43,20 +43,32 @@
 
 
     <div class="row justify-content-center">
-
-
-        <repeat group="{{ @stylists }}" key="{{@name}}" value="{{ @stylist }}">
+        <repeat group="{{ @stylists }}" value="{{ @stylist }}">
             <div class="col-md-4 mx-auto my-auto">
+                <div class="stylist-card"><a href="#"><img src="images/stylist-01-vert.png" alt="A jar with cream" class="img img-responsive"></a>
+                    <div class="profile-name">{{ @stylist.stylist_first_name }} {{ @stylist.stylist_last_name }}</div>
+                    <div class="bio" id="bio"><strong>About: </strong>{{@stylist.stylist_about}}</div><br>
+                    <div class="skills" id="skill"><strong>Skills: </strong>{{@stylist.stylist_skill}}</div><br>
+                    <div class="nickname" id="nickname"><strong>Nickname: </strong>{{@stylist.stylist_nickname}}</div><br>
+                    <div class="phone" id="phone"><strong>Phone: </strong>{{@stylist.stylist_phone_number}}</div>
 
-                <div class="stylist-card"><a href="#"><img src="{{@stylist[3]}}" alt="A jar with cream" class="img img-responsive"></a>
-                    <div class="profile-name">{{@name}}</div>
-                    <div class="bio" id="bio"><strong>About:</strong>{{@stylist[0]}}</div><br>
-                    <div class="skills" id="skill"><strong>Skills: </strong>{{@stylist[1]}}</div><br>
-                    <div class="nickname" id="nickname"><strong>Nickname: </strong>{{@stylist[2]}}</div>
                 </div>
             </div>
-
         </repeat>
+
+
+<!--        <repeat group="{{ @stylists }}" key="{{@name}}" value="{{ @stylist }}">-->
+<!--            <div class="col-md-4 mx-auto my-auto">-->
+
+<!--                <div class="stylist-card"><a href="#"><img src="{{@stylist[3]}}" alt="A jar with cream" class="img img-responsive"></a>-->
+<!--                    <div class="profile-name">{{@name}}</div>-->
+<!--                    <div class="bio" id="bio"><strong>About:</strong>{{@stylist[0]}}</div><br>-->
+<!--                    <div class="skills" id="skill"><strong>Skills: </strong>{{@stylist[1]}}</div><br>-->
+<!--                    <div class="nickname" id="nickname"><strong>Nickname: </strong>{{@stylist[2]}}</div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </repeat>-->
 
     </div>
 </div>

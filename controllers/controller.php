@@ -55,7 +55,9 @@ class Controller
     {
         global $dataLayer;
 
-        $this->_f3->set('stylists', $dataLayer->getStylist());
+        $this->_f3->set('stylists', $dataLayer->getStylish());
+        //$this->_f3->set('stylists', $dataLayer->getStylist());
+
 
         // View - Stylists
         $view = new Template();
