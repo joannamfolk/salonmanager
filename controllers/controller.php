@@ -6,13 +6,18 @@ class Controller
 {
     private $_f3;
 
-    // Constructor
+    /**
+     * Controller constructor.
+     * @param $f3
+     */
     function __construct($f3)
     {
         $this->_f3 = $f3;
     }
 
-    // Home View
+    /**
+     * Home View
+     */
     function home()
     {
         // View - Home
@@ -29,7 +34,9 @@ class Controller
         echo $view->render('views/appointment.html');
     }
 
-    // Services
+    /**
+     * Services
+     */
     function services()
     {
         global $dataLayer;
@@ -41,7 +48,9 @@ class Controller
         echo $view->render('views/services.html');
     }
 
-    // Stylists
+    /**
+     * Stylists
+     */
     function stylists()
     {
         global $dataLayer;
@@ -53,7 +62,9 @@ class Controller
         echo $view->render('views/stylist.html');
     }
 
-    // Products
+    /**
+     * Products
+     */
     function products()
     {
         global $dataLayer;
@@ -65,7 +76,9 @@ class Controller
         echo $view->render('views/products.html');
     }
 
-    // Contact
+    /**
+     * Contact
+     */
     function contact()
     {
 
@@ -163,6 +176,9 @@ class Controller
         echo $view->render('views/contact.html');
     }
 
+    /**
+     * View for Finished Form
+     */
     function formFinish()
     {
         // View _ Contact
@@ -170,7 +186,9 @@ class Controller
         echo $view->render('views/form-finish.html');
     }
 
-    // Admin - View Contacts
+    /**
+     * Admin - View Contacts
+     */
     function adminViewContacts()
     {
         global $dataLayer;
@@ -182,7 +200,9 @@ class Controller
         echo $view->render('views/admin-view-contacts.php');
     }
 
-    // Login
+    /**
+     * Login
+     */
     function login()
     {
         global $dataLayer;
@@ -222,14 +242,18 @@ class Controller
         echo $view->render('views/login.html');
     }
 
-    // Logout
+    /**
+     * Logout
+     */
     function logout(){
         session_destroy();
         $_SESSION = array();
         header('location: login.html');
     }
 
-    // Admin
+    /**
+     * Admin
+     */
     function admin()
     {
         var_dump($_SESSION);
@@ -237,7 +261,9 @@ class Controller
         echo $view->render('views/admin.html');
     }
 
-    // Add Service
+    /**
+     * Add Service
+     */
     function addService()
     {
 
@@ -292,7 +318,9 @@ class Controller
         echo $view->render('views/admin-add-service.php');
     }
 
-    // Add Product
+    /**
+     * Add Product
+     */
     function addProduct()
     {
 
@@ -361,7 +389,9 @@ class Controller
         echo $view->render('views/admin-add-product.php');
     }
 
-    // Add Stylists
+    /**
+     * Add Stylists
+     */
     function addStylist()
     {
         global $dataLayer;
@@ -445,6 +475,9 @@ class Controller
         echo $view->render('views/admin-add-stylist-form.php');
     }
 
+    /**
+     * Delete Stylists
+     */
     function deleteStylist()
     {
         global $dataLayer;
@@ -490,6 +523,9 @@ class Controller
         echo $view->render('views/admin-delete-stylist-form.php');
     }
 
+    /**
+     * Update Stylist
+     */
     function updateStylist()
     {
         global $dataLayer;

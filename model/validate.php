@@ -62,6 +62,7 @@ class Validate
      */
     function validName($name)
     {
+        $name=str_replace(" ", "", $name);
         return !empty($name) && ctype_alpha($name);
     }
 
@@ -74,7 +75,10 @@ class Validate
         return !empty($phone) && preg_match("/^\d{10}$/", $phone);
     }
 
-    // Validate Email
+    /**
+     * @param $email Validate Email
+     * @return bool
+     */
     function validEmail($email)
     {
         // Checks if valid email
@@ -82,27 +86,44 @@ class Validate
             && (filter_var($email, FILTER_VALIDATE_EMAIL));
     }
 
+    /**
+     * @param $name Updates Name
+     * @return bool
+     */
     function updateName($name)
     {
         return  ctype_alpha($name);
     }
+
+    /**
+     * @param $bio Updates bio
+     * @return false|int
+     */
     function updateBio($bio)
     {
         return preg_match("/.{2,60}$/", $bio);
     }
 
+    /**
+     * @param $skill Updates Stylist's Skill
+     * @return false|int
+     */
     function updateSkill ($skill)
     {
         return preg_match("/.{2,60}$/", $skill) ;
     }
 
+    /**
+     * @param $phone Verify Contact
+     * @return false|int
+     */
     function updatePhone ($phone)
     {
         return preg_match("/^\d{10}$/", $phone);
     }
 
     /**
-     * @param $bio
+     * @param $bio Validate Biography
      * @return bool
      */
     function validBio($bio)
@@ -111,17 +132,28 @@ class Validate
         return !empty($bio);
     }
 
+    /**
+     * @param $skill Update Skill
+     * @return bool
+     */
     function validSkill($skill)
     {
         return preg_match("/.{2,60}$/", $skill) && !empty($skill);
     }
 
+    /**
+     * @param $nickname Change Nickname
+     * @return false|int
+     */
     function validNickname($nickname)
     {
         return preg_match("/.{2,60}$/", $nickname);
     }
 
-    // Validate Preferred Times
+    /**
+     * @param $preferredTimes Validate Preferred Times for Apt
+     * @return bool
+     */
     function validPreferredTimes($preferredTimes): bool
     {
         $validPreferredTimes = $this->_dataLayer->getPreferredTimes();
@@ -134,7 +166,10 @@ class Validate
         return true;
     }
 
-    // Validate Preferred Days
+    /**
+     * @param $preferredDays Validate Preferred Days
+     * @return bool
+     */
     function validPreferredDays($preferredDays): bool
     {
         $validPreferredDays = $this->_dataLayer->getPreferredDays();

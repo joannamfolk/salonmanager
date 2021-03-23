@@ -71,8 +71,7 @@ $f3->route('GET|POST /contact', function() {
     $controller->contact();
 });
 
-// Form Finish
-//add and query stylist
+// FORM FINISH
 $f3->route('GET|POST /form-finish', function (){
 
     // Controller - Form Finish
@@ -112,34 +111,37 @@ $f3->route('GET|POST /admin-add-service', function() {
     $controller->addService();
 });
 
-//add and query stylist
+// ADD STYLIST
 $f3->route('GET|POST /admin-add-stylist-form', function (){
 
     // Controller - Add Stylist
     global $controller;
     $controller->addStylist();
 });
-//delete stylist
+
+// DELETE STYLISTS
 $f3->route('GET|POST /admin-delete-stylist-form', function (){
 
     // Controller - Add Stylist
     global $controller;
     $controller->deleteStylist();
 });
-//update stylist
+
+// UPDATE STYLIST
 $f3->route('GET|POST /admin-update-stylist-form', function (){
 
     // Controller - Add Stylist
     global $controller;
     $controller->updateStylist();
 });
-//stylist alternation page
+
+// ALT STYLISTS
 $f3->route('GET|POST /admin-add-stylist', function () {
     $view = new Template();
     echo $view->render('views/admin-add-stylist.php');
 });
 
-// Admin - View Contacts
+// VIEW ENQUIRIES
 $f3->route('GET|POST /admin-view-contacts', function (){
 
     // Controller - View Contacts

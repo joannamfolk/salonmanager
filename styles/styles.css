@@ -37,7 +37,7 @@
     color: #ffffff;
 }
 
-/* div for first block of text on front page */
+/* Text Styling Intro Div */
 .intro-container {
     background: #ed5757;
     overflow: hidden;
@@ -45,7 +45,7 @@
     padding-bottom: 50px;
 }
 
-/* Profile card zoom */
+/* Profile Cards */
 .profile-card-2 {
     max-width: 300px;
     background-color: #FFF;
@@ -110,17 +110,12 @@
     right: 40px;
 }
 
-/*
- PRODUCTS VIEW
- */
+/* Products View */
 .products-body{
     background-color: #2E2D2D;
 }
 
-/*
-Stylist page styling
- */
-
+/* Stylist page styling */
 .stylist-card {
     max-width: 300px;
     background-color: #FFF;
@@ -185,7 +180,7 @@ Stylist page styling
 .stylist-card:hover .profile-icons {
     right: 40px;
 }
-/*TABLE STYLING*/
+/* Table Styling */
 td {
     padding:0 15px;
 }

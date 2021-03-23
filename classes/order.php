@@ -14,6 +14,8 @@ class Order
     private $_card;
 
     // Setters/Getters
+
+    // Item
     public function getItem()
     {
         return $this->_item;
@@ -24,6 +26,7 @@ class Order
         $this->_item = $item;
     }
 
+    // Name
     public function getName()
     {
         return $this->_name;
@@ -34,6 +37,7 @@ class Order
         $this->_name = $name;
     }
 
+    // Card #
     public function getCard()
     {
         return $this->_card;
