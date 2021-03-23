@@ -30,18 +30,16 @@
             </ul>
         </div>
     </div>
-</nav>
-<!-- Navigation End -->
-<div class="container">
+</nav> <!-- Navigation End -->
 
-    <div class="border border-dark text-center">
-
-        <h1>Login Page</h1>
-
+<!-- Login Form Container -->
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="border text-center rounded shadow-lg mt-3" style="width: 650px">
+        <h1>Admin Portal</h1>
         <form action="#" method="post">
             <div class="form-group">
                 <label for="username" class="m-2">Username</label>
-                <input type="text" class="form-control" id="username" name="username">
+                <input type="text" class="form-control " id="username" name="username">
             </div>
             <div class="text-danger">
                 <check if="{{isset(@errors['username'])}}">
@@ -63,7 +61,7 @@
         </form> <!-- Login in form end -->
         <a href="admin">SKIP</a>
     </div>
-</div>
+</div> <!-- Login Form Container End-->
 
 <!-- Footer Start -->
 <include href="includes/footer.html"></include>

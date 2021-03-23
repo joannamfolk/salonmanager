@@ -258,7 +258,7 @@ class Controller
      */
     function admin()
     {
-        var_dump($_SESSION);
+        //var_dump($_SESSION);
         $view = new Template();
         echo $view->render('views/admin.html');
     }
@@ -456,6 +456,9 @@ class Controller
             } else {
                 $this->_f3->set('errors["phone"]', "Phone is require and 10 digit long");
             }
+
+            // Hive - Stylists
+            $this->_f3->set('stylists', $dataLayer->getStylish());
 
             // if no errors - save product to database
             if(empty($this->_f3->get('errors'))){

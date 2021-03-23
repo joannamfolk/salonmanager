@@ -28,12 +28,12 @@
 <!-- End Navigation -->
 
 <div class="container border border-dark rounded shadow-lg mt-5">
-    <h5>Logged In As: </h5>
+    <h5>Logged In As: Admin</h5>
     <div class="row">
         <div class="col-4 border">
             <form action="#" method="post">
                 <h4>Add Service</h4>
-                <label for="service-name" class="font-weight-bolder">Product Name: <br>
+                <label for="service-name" class="font-weight-bolder">Service Name: <br>
                     <input type="text" size="75" class="form-control shadow-sm rounded" id="service-name" name="service-name" value="">
                     <div class="text-danger">
                         <check if="{{isset(@errors['servicename'])}}">
@@ -42,7 +42,7 @@
                     </div>
                 </label> <br>
 
-                <label for="service-description" class="font-weight-bolder">Product Description: <br>
+                <label for="service-description" class="font-weight-bolder">Service Description: <br>
                     <textarea name="service-description" id="service-description" class="shadow-sm rounded" wrap="hard" cols="50" rows="6"></textarea>
                     <div class="text-danger">
                         <check if="{{isset(@errors['servicedescription'])}}">

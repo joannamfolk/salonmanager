@@ -28,7 +28,7 @@
 <!-- End Navigation -->
 
 <div class="container border border-dark rounded shadow-lg mt-5">
-    <h5>Logged In As: </h5>
+    <h5>Logged In As: Admin</h5>
     <div class="row">
         <div class="col-4 border">
             <form action="#" method="post">
@@ -108,9 +108,9 @@
                             <p class="card-text">{{@product.product_description}}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{@product.product_size}}</li>
-                            <li class="list-group-item">{{@product.product_price}}</li>
-                            <li class="list-group-item">{{@product.product_category}}</li>
+                            <li class="list-group-item">Size: {{@product.product_size}}</li>
+                            <li class="list-group-item">Price: ${{@product.product_price}}</li>
+                            <li class="list-group-item">Category: {{@product.product_category}}</li>
                         </ul>
                         <div class="card-body">
                             <a href="#" class="card-link">Update Product</a>
