@@ -113,26 +113,22 @@
 
         </div>
         <div class="col-8 border">
-            <!--            <repeat group="{{@products}}" value="{{@product}}">-->
-            <!--                <div class="row justify-content-around">-->
-            <!--                    <div class="card d-inline-block mt-3 col-2" style="width: 22rem;">-->
-            <!--                        <img class="card-img-top" src="images/front-product.png" alt="Card image cap">-->
-            <!--                        <div class="card-body">-->
-            <!--                            <h5 class="card-title">{{@product.product_name}}</h5>-->
-            <!--                            <p class="card-text">{{@product.product_description}}</p>-->
-            <!--                        </div>-->
-            <!--                        <ul class="list-group list-group-flush">-->
-            <!--                            <li class="list-group-item">{{@product.product_size}}</li>-->
-            <!--                            <li class="list-group-item">{{@product.product_price}}</li>-->
-            <!--                            <li class="list-group-item">{{@product.product_category}}</li>-->
-            <!--                        </ul>-->
-            <!--                        <div class="card-body">-->
-            <!--                            <a href="#" class="card-link">Update Product</a>-->
-            <!--                            <a href="#" class="card-link">Delete Product</a>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </repeat>-->
+            <repeat group="{{@stylists}}" value="{{@stylist}}">
+                <div class="row justify-content-around">
+                    <div class="card d-inline-block mt-3 col-2" style="width: 22rem;">
+                        <img class="card-img-top" src="images/{{@stylist.stylist_image}}" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">{{@stylist.stylist_first_name}} {{@stylist.stylist_last_name}}</h5>
+                            <p class="card-text">{{@stylist.stylist_about}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Nickname: {{@stylist.stylist_nickname}}</li>
+                            <li class="list-group-item">Skill: {{@stylist.stylist_skill}}</li>
+                            <li class="list-group-item">{{@stylist.stylist_phone_number}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </repeat>
         </div>
     </div>
 </div>
