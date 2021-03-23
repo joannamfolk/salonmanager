@@ -320,7 +320,7 @@ class DataLayer
             $statement->execute();
 
             //$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            echo "<h2> $stylistFname $stylistLname was update successful successful</h2>";
+            echo "<h2> $stylistFname $stylistLname was update successful update</h2>";
 
         }
     }
