@@ -87,68 +87,15 @@ class Validate
     }
 
     /**
-     * @param $name Updates Name
+     * @param $text
      * @return bool
      */
-    function updateName($name)
+    function validText ($text)
     {
-        return  ctype_alpha($name);
+        return !empty($text) && preg_match("/^[ A-Za-z\\s-!,.'?;:]*$/", $text);
+        //return  !empty($bio);
     }
 
-    /**
-     * @param $bio Updates bio
-     * @return false|int
-     */
-    function updateBio($bio)
-    {
-        return preg_match("/.{2,60}$/", $bio);
-    }
-
-    /**
-     * @param $skill Updates Stylist's Skill
-     * @return false|int
-     */
-    function updateSkill ($skill)
-    {
-        return preg_match("/.{2,60}$/", $skill) ;
-    }
-
-    /**
-     * @param $phone Verify Contact
-     * @return false|int
-     */
-    function updatePhone ($phone)
-    {
-        return preg_match("/^\d{10}$/", $phone);
-    }
-
-    /**
-     * @param $bio Validate Biography
-     * @return bool
-     */
-    function validBio($bio)
-    {
-        //return !empty($bio) && preg_match("/.{2,60}$/", $bio);
-        return !empty($bio);
-    }
-
-    /**
-     * @param $skill Update Skill
-     * @return bool
-     */
-    function validSkill($skill)
-    {
-        return preg_match("/.{2,60}$/", $skill) && !empty($skill);
-    }
-
-    /**
-     * @param $nickname Change Nickname
-     * @return false|int
-     */
-    function validNickname($nickname)
-    {
-        return preg_match("/.{2,60}$/", $nickname);
-    }
 
     /**
      * @param $preferredTimes Validate Preferred Times for Apt

@@ -45,7 +45,7 @@
     <div class="row justify-content-center">
         <repeat group="{{ @stylists }}" value="{{ @stylist }}">
             <div class="col-md-4 mx-auto my-auto">
-                <div class="stylist-card"><a href="#"><img src="images/stylist-01-vert.png" alt="A jar with cream" class="img img-responsive"></a>
+                <div class="stylist-card"><a href="#"><img src="images/{{@stylist.stylist_image}}" alt="A jar with cream" class="img img-responsive"></a>
                     <div class="profile-name">{{ @stylist.stylist_first_name }} {{ @stylist.stylist_last_name }}</div>
                     <div class="bio" id="bio"><strong>About: </strong>{{@stylist.stylist_about}}</div><br>
                     <div class="skills" id="skill"><strong>Skills: </strong>{{@stylist.stylist_skill}}</div><br>

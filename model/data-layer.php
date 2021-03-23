@@ -179,8 +179,8 @@ class DataLayer
     function insertStylist()
     {
         //Define the query
-        $sql = "INSERT INTO SM_Stylists (stylist_first_name, stylist_last_name, stylist_about, stylist_skill, stylist_nickname, stylist_phone_number) 
-                    VALUES (:stylist_first_name, :stylist_last_name, :stylist_about, :stylist_skill, :stylist_nickname, :stylist_phone_number)";
+        $sql = "INSERT INTO SM_Stylists (stylist_first_name, stylist_last_name, stylist_about, stylist_skill, stylist_nickname, stylist_phone_number,stylist_image) 
+                    VALUES (:stylist_first_name, :stylist_last_name, :stylist_about, :stylist_skill, :stylist_nickname, :stylist_phone_number, :stylist_image)";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -191,6 +191,8 @@ class DataLayer
         $stylistSkill = $_POST['stylistSkill'];
         $stylistNickname = $_POST['stylistNickname'];
         $stylistPhone = $_POST['stylistPhone'];
+        $stylistImage = $_FILES['fileToUpload']["name"];
+
 
 
         //Bind the parameters
@@ -200,6 +202,8 @@ class DataLayer
         $statement->bindParam(':stylist_skill', $stylistSkill, PDO::PARAM_STR);
         $statement->bindParam(':stylist_nickname', $stylistNickname, PDO::PARAM_STR);
         $statement->bindParam(':stylist_phone_number', $stylistPhone, PDO::PARAM_INT);
+        $statement->bindParam(':stylist_image', $stylistImage, PDO::PARAM_STR);
+
 
         //Execute
         $statement->execute();
@@ -294,7 +298,8 @@ class DataLayer
         } else {
             $sql = "UPDATE SM_Stylists SET stylist_first_name =:stylist_first_name, stylist_last_name = :stylist_last_name,
         stylist_about = :stylist_about, stylist_skill = :stylist_skill, stylist_nickname = :stylist_nickname,
-        stylist_phone_number =:stylist_phone_number WHERE stylist_first_name = :stylist_first_name and stylist_last_name = :stylist_last_name";
+        stylist_phone_number =:stylist_phone_number, stylist_image = :stylist_image
+WHERE stylist_first_name = :stylist_first_name and stylist_last_name = :stylist_last_name";
 //        $sql = "UPDATE SM_Stylists SET stylist_first_name =:stylist_first_name, stylist_last_name = :stylist_last_name,
 //        stylist_about = :stylist_about, stylist_skill = :stylist_skill, stylist_nickname = :stylist_nickname,
 //        stylist_phone_number =:stylist_phone_number WHERE
@@ -309,6 +314,8 @@ class DataLayer
             $stylistSkill = $_POST['stylistSkill'];
             $stylistNickname = $_POST['stylistNickname'];
             $stylistPhone = $_POST['stylistPhone'];
+            $stylistImage = $_FILES['fileToUpload']["name"];
+
             //bind
             $statement->bindParam(':stylist_first_name', $stylistFname, PDO::PARAM_STR);
             $statement->bindParam(':stylist_last_name', $stylistLname, PDO::PARAM_STR);
@@ -316,6 +323,8 @@ class DataLayer
             $statement->bindParam(':stylist_skill', $stylistSkill, PDO::PARAM_STR);
             $statement->bindParam(':stylist_nickname', $stylistNickname, PDO::PARAM_STR);
             $statement->bindParam(':stylist_phone_number', $stylistPhone, PDO::PARAM_INT);
+            $statement->bindParam(':stylist_image', $stylistImage, PDO::PARAM_STR);
+
             //execute
             $statement->execute();
 

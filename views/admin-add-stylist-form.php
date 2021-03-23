@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-4 border">
             <!--FORM TO ADD STYLIST-->
-            <form  action="#" method="post" id="add-stylist-form">
+            <form  action="#" method="post" id="add-stylist-form" enctype="multipart/form-data">
                 <h4>Add Stylist</h4>
                 <!--Stylist first name-->
 
@@ -91,6 +91,15 @@
                         </check>
                     </div>
                 </label>
+                <label for="fileToUpload" class="font-weight-bolder">Select image to upload: <br>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <div class="text-danger">
+                        <check if="{{isset(@errors['image'])}}">
+                            {{@errors['image']}}
+                        </check>
+                    </div>
+                    <!--                    <input type="submit" value="Upload Image" name="submit">-->
+                </label>
 
                 <div class="text-center align-middle ">
                         <button class="btn btn-primary mt-5 text-center rounded" type="submit" id="submit-add" >Submit</button>
@@ -107,7 +116,7 @@
             <repeat group="{{@stylists}}" value="{{@stylist}}">
                 <div class="row justify-content-around">
                     <div class="card d-inline-block mt-3 col-2" style="width: 22rem;">
-                        <img class="card-img-top" src="images/stylist-04.png" alt="">
+                        <img class="card-img-top" src="images/{{@stylist.stylist_image}}" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{@stylist.stylist_first_name}} {{@stylist.stylist_last_name}}</h5>
                             <p class="card-text">{{@stylist.stylist_about}}</p>

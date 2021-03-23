@@ -409,6 +409,7 @@ class Controller
         $stylistSkill = trim($_POST['stylistSkill']);
         $stylistNickname = trim($_POST['stylistNickname']);
         $stylistPhone = trim($_POST['stylistPhone']);
+        $stylistImage = $_FILES['fileToUpload']['name'];
 
         // Error Tracking
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -430,21 +431,21 @@ class Controller
             }
 
             // Validate Bio
-            if($validator->validBio($stylistBio)){
+            if($validator->validText($stylistBio)){
                 $_SESSION['stylist_bio'] = $stylistBio;
             } else {
                 $this->_f3->set('errors["bio"]', "Please fill out bio for stylist");
             }
 
             // Validate Skill
-            if($validator->validSkill($stylistSkill)){
+            if($validator->validText($stylistSkill)){
                 $_SESSION['stylist_skill'] = $stylistSkill;
             } else {
                 $this->_f3->set('errors["skill"]', "Please fill out skill for stylist");
             }
 
             // Validate Nickname
-            if($validator->validNickname($stylistNickname)){
+            if($validator->validText($stylistNickname)){
                 $_SESSION['stylist_nickname'] = $stylistNickname;
             } else {
                 $this->_f3->set('errors["nickname"]', "Please fill out nickname for stylist");
@@ -456,9 +457,12 @@ class Controller
             } else {
                 $this->_f3->set('errors["phone"]', "Phone is require and 10 digit long");
             }
+            if (empty($stylistImage)){
+                $this->_f3-> set('errors["image"]', "Please chose a image file");
+            }
 
-            // Hive - Stylists
-            $this->_f3->set('stylists', $dataLayer->getStylish());
+//            // Hive - Stylists
+//            $this->_f3->set('stylists', $dataLayer->getStylish());
 
             // if no errors - save product to database
             if(empty($this->_f3->get('errors'))){
@@ -475,6 +479,8 @@ class Controller
         $this->_f3->set('skill', isset($stylistSkill) ? $stylistSkill : "");
         $this->_f3->set('nickname', isset($stylistNickname) ? $stylistNickname : "");
         $this->_f3->set('phone', isset($stylistPhone) ? $stylistPhone : "");
+        $this->_f3->set('image', isset($stylistImage) ? $stylistImage: "");//added image
+
         // View - Add Stylist
         $view = new Template();
         echo $view->render('views/admin-add-stylist-form.php');
@@ -541,12 +547,14 @@ class Controller
         $stylistSkill = trim($_POST['stylistSkill']);
         $stylistNickname = trim($_POST['stylistNickname']);
         $stylistPhone = trim($_POST['stylistPhone']);
+        $stylistImage = $_FILES['fileToUpload']['name'];
+
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             // Validate and set error messages
             if(isset($stylistFname)){
-                if ($validator->updateName($stylistFname)) {
+                if ($validator->validName($stylistFname)) {
                     $_SESSION['stylist_fname'] = $stylistFname;
                 }
                 else {
@@ -554,7 +562,7 @@ class Controller
                 }
             }
 
-            if ($validator->updateName($stylistLname)) {
+            if ($validator->validName($stylistLname)) {
                 $_SESSION['stylist_lname'] = $stylistLname;
             }
             else {
@@ -562,28 +570,32 @@ class Controller
             }
 
 
-            if($validator->updateBio($stylistBio)){
+            if($validator->validText($stylistBio)){
                 $_SESSION['stylist_bio'] = $stylistBio;
             } else {
                 $this->_f3-> set('errors["bio"]', "Please enter a valid input");
             }
 
-            if($validator->updateSkill($stylistSkill)){
+            if($validator->validText($stylistSkill)){
                 $_SESSION['stylist_skill'] = $stylistSkill;
             } else {
                 $this->_f3-> set('errors["skill"]', "Please enter a valid input");
             }
 
-            if($validator->validNickname($stylistNickname)){
+            if($validator->validText($stylistNickname)){
                 $_SESSION['stylist_nickname'] = $stylistNickname;
             } else {
                 $this->_f3-> set('errors["nickname"]', "Please enter a valid name in put");
             }
 
-            if($validator->updatePhone($stylistPhone)){
+            if($validator->validPhone($stylistPhone)){
                 $_SESSION['stylist_phone'] = $stylistPhone;
             } else {
                 $this->_f3-> set('errors["phone"]', "Please enter valid phone number (10 digit)");
+            }
+
+            if (empty($stylistImage)){
+                $this->_f3-> set('errors["image"]', "Please chose a image file");
             }
 
             // if no errors - save product to database
@@ -602,6 +614,7 @@ class Controller
         $this->_f3->set('skill', isset($stylistSkill) ? $stylistSkill : "");
         $this->_f3->set('nickname', isset($stylistNickname) ? $stylistNickname : "");
         $this->_f3->set('phone', isset($stylistPhone) ? $stylistPhone : "");
+        $this->_f3->set('image', isset($stylistImage) ? $stylistImage: "");//added image
 
 
         $view = new Template();

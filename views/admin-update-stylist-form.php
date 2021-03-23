@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-4 border">
             <!--FORM TO ADD STYLIST-->
-            <form  action="#" method="post" id="update-stylist-form">
+            <form  action="#" method="post" id="update-stylist-form" enctype="multipart/form-data">
                 <h4>Update Stylist</h4>
                 <!--Stylist first name-->
 
@@ -90,6 +90,15 @@
                             {{@errors['phone']}}
                         </check>
                     </div>
+                </label>
+                <label for="fileToUpload" class="font-weight-bolder">Select image to upload: <br>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <div class="text-danger">
+                        <check if="{{isset(@errors['image'])}}">
+                            {{@errors['image']}}
+                        </check>
+                    </div>
+                    <!--                    <input type="submit" value="Upload Image" name="submit">-->
                 </label>
 
                 <div class="text-center align-middle ">
