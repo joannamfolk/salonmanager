@@ -71,7 +71,6 @@
             <repeat group="{{@services}}" value="{{@service}}">
                 <div class="row justify-content-around">
                     <div class="card d-inline-block mt-3 col-2" style="width: 22rem;">
-                        <img class="card-img-top" src="images/services-blowout-vert.png" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{@service.service_name}}</h5>
                             <p class="card-text">{{@service.service_description}}</p>
