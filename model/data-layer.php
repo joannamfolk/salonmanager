@@ -255,7 +255,7 @@ class DataLayer
             $statement->execute();
 
             //$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            echo "<h2>Stylist $stylistLname $stylistLname was successful remove</h2>";
+            echo "<h2>Stylist $stylistFname $stylistLname was successful remove</h2>";
 
         }
     }
