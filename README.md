@@ -11,9 +11,11 @@ Current Version - 1.0
 - JavaScript
 
 **Salon Management Application**
+
 The application offers salon management concepts allowing administration to have CRUD functionalty for their products, services they offer, and employees.
 
 **Database Relations**
+
 All pages can access (Admin || User Links)
 Admin can access (Manage Products, Stylists, Services, Inventory, Employment Status, & Queries)
 
